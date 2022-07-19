@@ -1,0 +1,1923 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DaacoWorks.Modbus</name>
+    </assembly>
+    <members>
+        <member name="T:Com.DaacoWorks.Modbus.Clients.IModbusClient">
+            <summary>
+            IModbusClient interface defines the basic operations to be supported for submitting request to modbus supported devices.
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Clients.ModbusClient">
+            <summary>
+            ModbusClient has the implementation of ModbusClient interface.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Clients.ModbusClient.#ctor(Com.DaacoWorks.Protocol.Model.ConnectionParameters)">
+            <summary>
+            Instantiates ModbusClient
+            </summary>
+            <param name="parameters">connection parameters</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Clients.ModbusClient.Init">
+            <summary>
+            Initializes the ModbusClient by establishing the ModbusConnection instance
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Clients.ModbusClient.Submit(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Submits a Modbus Request synchronously and returns a TaskFuture that allows to access respective response
+            </summary>
+            <param name="requestObject">modbus request</param>
+            <returns>the TaskFuture</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Clients.ModbusClient.SubmitAsync(Com.DaacoWorks.Modbus.Pdu.ModbusRequest,Com.DaacoWorks.Protocol.Executor.IResponseCallback{Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse,Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse})">
+            <summary>
+            Submits Modbus Request asynchronously and calls the callback object's success or error methods when respective response is received
+            </summary>
+            <param name="requestObject">modbus request</param>
+            <param name="callBack">IResponseCallback instance that can receive uccess/failure message</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Clients.ModbusClient.Schedule(Com.DaacoWorks.Modbus.Pdu.ModbusRequest,System.TimeSpan,Com.DaacoWorks.Protocol.Executor.IResponseCallback{Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse,Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse})">
+            <summary>
+            Submits Modbus Request asynchronously but on scheduled time. It submits the same request again and again on provided interval.
+            It calls the callback object's success or error methods when respective response is received
+            </summary>
+            <param name="requestObject">modbus request</param>
+            <param name="interval">periodic interval the request has to be submitted</param>
+            <param name="callBack">IResponseCallback instance that can receive uccess/failure message</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Clients.ModbusClient.Shutdown">
+            <summary>
+            Shuts the connection established with peer
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Clients.ModbusClient.GetHashCode">
+            <summary>
+            Gets hash code
+            </summary>
+            <returns>hash code</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Clients.ModbusClient.Equals(System.Object)">
+            <summary>
+            Checks if is equal
+            </summary>
+            <param name="obj">any object</param>
+            <returns>true if object is same ModbusClient</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Clients.ModbusClientFactory">
+            <summary>
+            Factory class to create ModbusClient instances that represents socket connection with the modbus supported devices.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Clients.ModbusClientFactory.GetInstance">
+            <summary>
+            Gets the single instance of ModbusClientFactory.
+            </summary>
+            <returns>the ModbusClientFactory</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Clients.ModbusClientFactory.Create(Com.DaacoWorks.Protocol.Model.ConnectionParameters)">
+            <summary>
+            Creates an instance of ModbusClient
+            </summary>
+            <param name="connectionParameters"></param>
+            <returns>the ModbusClient</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Client.Exception.ModbusClientRuntimeException">
+            <summary>
+            ModbusClientRuntimeException is Exception thrown by Modbus stack.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Client.Exception.ModbusClientRuntimeException.#ctor(System.String)">
+            <summary>
+            Instantiates a new modbus client runtime exception.
+            </summary>
+            <param name="message">error message</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Client.Exception.ModbusException">
+            <summary>
+            ModbusException class used by Modbus stack to throw exception.
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Client.Exception.ModbusException.ErrorCode">
+            <summary>
+            Gets the error code.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Client.Exception.ModbusException.#ctor(System.Int32,System.String)">
+            <summary>
+            Instantiates a new modbus exception.
+            </summary>
+            <param name="errorCode"></param>
+            <param name="errorDescription"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Codec.ModbusASCIIOverTCPUDPDecoder">
+            <summary>
+            ModbusASCIIOverTCPUDPDecoder is a decoder class invoked to decode the ModbusASCII responses.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Codec.ModbusASCIIOverTCPUDPDecoder.Decode(Com.DaacoWorks.Protocol.Model.ConnectionParameters,System.IO.MemoryStream)">
+            <summary>
+            Decode the bytes available in the input buffer
+            </summary>
+            <param name="connectionParameters"></param>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Codec.ModbusASCIIOverTCPUDPDecoder.GetDataFromASCII(System.Byte[])">
+            <summary>
+            Gets the data from ASCII.
+            </summary>
+            <param name="data">the data</param>
+            <returns>data from ASCII</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Codec.ModbusASCIIOverTCPUDPDecoder.PerformLRC(System.IO.MemoryStream)">
+            <summary>
+            Perform LRC.
+            </summary>
+            <param name="buffer">the buffer</param>
+            <returns>true, if successful</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Codec.ModbusASCIIOverTCPUDPEncoder">
+            <summary>
+            ModbusASCIIOverTCPUDPEncoder is a encoder class invoked to encode the ModbusASCII requests.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Codec.ModbusASCIIOverTCPUDPEncoder.Encode(Com.DaacoWorks.Modbus.Pdu.Executor.ModbusPDUWrapper,System.IO.MemoryStream)">
+            <summary>
+            Encode the request object into output buffer.
+            </summary>
+            <param name="metaInfo">meta information</param>
+            <param name="output">output as memorystream</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Codec.ModbusCodecFactory">
+            <summary>
+            Factory class to provide encoder/decoder instances for a given modbus type.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Codec.ModbusCodecFactory.GetEncoder(Com.DaacoWorks.Modbus.Pdu.Constants.Constants.ModbusType)">
+            <summary>
+            Gets the encoder.
+            </summary>
+            <param name="type">modbus type</param>
+            <returns>the encoder</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Codec.ModbusCodecFactory.GetDecoder(Com.DaacoWorks.Modbus.Pdu.Constants.Constants.ModbusType)">
+            <summary>
+            Gets the decoder.
+            </summary>
+            <param name="type">modbus type</param>
+            <returns>the decoder</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Codec.ModbusResponseParser">
+            <summary>
+            ModbusResponseParser class is used to parse the input buffer and converts it into ModbusResponse.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Codec.ModbusResponseParser.ParseModbusResponsePDU(Com.DaacoWorks.Protocol.Model.RequestIdentifier,System.Int32,System.Int32,System.IO.MemoryStream)">
+            <summary>
+            Parses the modbus response PDU.
+            </summary>
+            <param name="requestId">the request id</param>
+            <param name="pduLength">pdu length</param>
+            <param name="functionCode">the function code</param>
+            <param name="input">the input</param>
+            <returns>the response</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Codec.ModbusRTUOverTCPUDPDecoder">
+            <summary>
+            ModbusRTUOverTCPUDPDecoder is a decoder class invoked to decode the ModbusRTU responses.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Codec.ModbusRTUOverTCPUDPDecoder.Decode(Com.DaacoWorks.Protocol.Model.ConnectionParameters,System.IO.MemoryStream)">
+            <summary>
+            Decodes the RTU response
+            </summary>
+            <param name="connectionParameters">connection parameters</param>
+            <param name="input">the input</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Codec.ModbusRTUOverTCPUDPEncoder">
+            <summary>
+            ModbusRTUOverTCPUDPEncoder is a encoder class invoked to encode the ModbusRTU requests.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Codec.ModbusRTUOverTCPUDPEncoder.Encode(Com.DaacoWorks.Modbus.Pdu.Executor.ModbusPDUWrapper,System.IO.MemoryStream)">
+            <summary>
+            Encodes the RTU request
+            </summary>
+            <param name="metaInfo"></param>
+            <param name="output"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Codec.ModbusTCPUDPDecoder">
+            <summary>
+            ModbusTCPUDPDecoder is a decoder class invoked to decoder the ModbusTCP responses.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Codec.ModbusTCPUDPDecoder.Decode(Com.DaacoWorks.Protocol.Model.ConnectionParameters,System.IO.MemoryStream)">
+            <summary>
+            Decodes the TCP response received as input
+            </summary>
+            <param name="connectionParameters">connection parameter</param>
+            <param name="input">the input</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Codec.ModbusTCPUDPEncoder">
+            <summary>
+            ModbusTCPUDPEncoder is a encoder class invoked to encode the ModbusTCP requests.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Codec.ModbusTCPUDPEncoder.Encode(Com.DaacoWorks.Modbus.Pdu.Executor.ModbusPDUWrapper,System.IO.MemoryStream)">
+            <summary>
+            Encodes the TCP request
+            </summary>
+            <param name="metaInfo">meta information</param>
+            <param name="output">the output</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Codec.ModbusTCPUDPEncoder.EncodeHeader(Com.DaacoWorks.Modbus.Pdu.Executor.ModbusPDUWrapper,System.IO.MemoryStream)">
+            <summary>
+            Encode header.
+            </summary>
+            <param name="metaInfo">meta information</param>
+            <param name="output">the output</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Header.ModbusTCPHeader">
+            <summary>
+            ModbusTCPHeader class represents the header information present in the Modbus TCP message.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Header.ModbusTCPHeader.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus TCP header.
+            </summary>
+            <param name="pdu">the pdu</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Header.ModbusTCPHeader.GetHeaderInBytes">
+            <summary>
+            Get Header as bytes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Header.ModbusTCPHeader.SetTransactionId(System.Int32)">
+            <summary>
+            Sets the transaction id.
+            </summary>
+            <param name="transactionId">transaction id</param>
+            <returns>the modbus TCP header</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Header.ModbusTCPHeader.SetProtocolId(System.Int32)">
+            <summary>
+            Sets the protocol id.
+            </summary>
+            <param name="protocolId">protocol id</param>
+            <returns>the modbus TCP header</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Header.ModbusTCPHeader.SetLength(System.Int32)">
+            <summary>
+            Sets the length.
+            </summary>
+            <param name="length">the length</param>
+            <returns>the modbus TCP header</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Header.ModbusTCPHeader.GetTransactionId">
+            <summary>
+            Gets transaction id
+            </summary>
+            <returns>transaction id</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Header.ModbusTCPHeader.GetProtocolId">
+            <summary>
+            Gets protocol id
+            </summary>
+            <returns>protocol id</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Header.ModbusTCPHeader.GetLength">
+            <summary>
+            Gets the length
+            </summary>
+            <returns>the length</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Header.ModbusTCPHeader.GetRequestId">
+            <summary>
+            Gets request id
+            </summary>
+            <returns>the request id</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Header.ModbusTCPHeader.SetRequestId(System.Int32)">
+            <summary>
+            Sets request id
+            </summary>
+            <param name="requestId">the request id</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Model.DeviceInfo">
+            <summary>
+            DeviceInfo class is a model class to represent object Id and its value. It is used to represent the responses
+            received for the Modbus request Read Device Identification(function code 0x2B).
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.DeviceInfo.#ctor(System.Byte,System.Byte[])">
+            <summary>
+            Instantiates a new device info.
+            </summary>
+            <param name="objectID">the object id</param>
+            <param name="objectValue">the object value</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.DeviceInfo.GetObjectID">
+            <summary>
+            Gets the object id
+            </summary>
+            <returns>the object id</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.DeviceInfo.GetObjectValue">
+            <summary>
+            Gets the object value
+            </summary>
+            <returns>the object value</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Model.FileRecordData">
+            <summary>
+            FileRecordData is a model class to represent the requests and responses for the function codes
+            Read File Record(0x14) and Write File Record(0x15)
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.FileRecordData.#ctor(System.UInt16,System.UInt16,System.UInt16)">
+            <summary>
+            Instantiates a new file record data.
+            </summary>
+            <param name="fileNumber">the file number</param>
+            <param name="recordNumber">record number</param>
+            <param name="recordLength">record length</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.FileRecordData.#ctor(System.UInt16,System.UInt16,System.Byte[])">
+            <summary>
+            Instantiates a new file record data.
+            </summary>
+            <param name="fileNumber">the file number</param>
+            <param name="recordNumber">record number</param>
+            <param name="recordData">record data</param>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Model.FileRecordData.FileNumber">
+            <summary>
+            Gets/sets File number
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Model.FileRecordData.RecordNumber">
+            <summary>
+            Gets or sets record number
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Model.FileRecordData.RecordLength">
+            <summary>
+            Gets/sets record length
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Model.FileRecordData.RecordData">
+            <summary>
+            Gets/sets record data
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Model.ModbusRequestIdentifier">
+            <summary>
+            ModbusRequestIdentifier class represents unique identifier to identify a modbus request.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.ModbusRequestIdentifier.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            ModbusRequestIdentifier class represents unique identifier to identify a modbus request.
+            </summary>
+            <param name="host">the ost</param>
+            <param name="functionCode">function code</param>
+            <param name="requestId">request id</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.ModbusRequestIdentifier.GetRequestId">
+            <summary>
+            Gets the request Id
+            </summary>
+            <returns>request id</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.ModbusRequestIdentifier.GetHashCode">
+            <summary>
+            Gets the hash code
+            </summary>
+            <returns>hash code</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.ModbusRequestIdentifier.GetHost">
+            <summary>
+            Gets the host name
+            </summary>
+            <returns>host name</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.ModbusRequestIdentifier.Equals(System.Object)">
+            <summary>
+            Checks if the objects are equal
+            </summary>
+            <param name="obj">any object</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.ModbusRequestIdentifier.ToString">
+            <summary>
+            Serialize the object to a formatted string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.ModbusRequestIdentifier.GetFunctionCode">
+            <summary>
+            Gets the function code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Model.ModbusSocketParameters">
+            <summary>
+            ModbusSocketParameters class represents the parameters required for establishing a socket connection with
+            Modbus server.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.ModbusSocketParameters.#ctor(System.String,System.Int32,Com.DaacoWorks.Modbus.Pdu.Constants.Constants.ModbusType)">
+            <summary>
+            Instantiates a new modbus socket parameters.
+            </summary>
+            <param name="hostName">the host name</param>
+            <param name="port">port number</param>
+            <param name="type">modbus type</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Model.ModbusSocketParameters.GetModbusType">
+            <summary>
+            Gets the modbus type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Constants.Constants">
+            <summary>
+            Constants class to provide constant values for other Modbus classes.
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.ModbusType">
+            <summary>
+            Represents all modbus types
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.ModbusType.UNKNOWN">
+            <summary>
+            unknown 
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.ModbusType.TCP">
+            <summary>
+            TCP
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.ModbusType.UDP">
+            <summary>
+            UDP
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.ModbusType.RTU_OVER_TCP">
+            <summary>
+            RTU over TCP to send over serial network such as RS-485
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.ModbusType.RTU_OVER_UDP">
+            <summary>
+            RTU over UDP to send over serial network such as RS-485
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.ModbusType.ASCII_OVER_TCP">
+            <summary>
+            ASCII data over TCP to 
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.ModbusType.ASCII_OVER_UDP">
+            <summary>
+            ASCII data over UDP
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.CoilState">
+            <summary>
+            Represents coil state
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.CoilState.OFF">
+            <summary>
+            Coil Off state
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.CoilState.ON">
+            <summary>
+            Coil On state
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.DeviceID">
+            <summary>
+            Represents device id
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.DeviceID.BASIC_DEVICE_IDENTIFICATION">
+            <summary>
+            Basic device identification
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.DeviceID.REGULAR_DEVICE_IDENTIFICATION">
+            <summary>
+            Regular device identification
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.DeviceID.EXTENDED_DEVICE_IDENTIFICATION">
+            <summary>
+            Extended device identification
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.Constants.DeviceID.SPECIFIC_DEVICE_IDENTIFICATION">
+            <summary>
+            Specific device identification
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes">
+            <summary>
+            FunctionCodes has the function codes mentioned in Modbus specification v1.1b. 
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.READ_COILS">
+            <summary>
+            Read coils
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.READ_DISCRETE_INPUTS">
+            <summary>
+            Read Discrete inputs
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.READ_HOLDING_REGISTERS">
+            <summary>
+            Read holding registers
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.READ_INPUT_REGISTERS">
+            <summary>
+            Read input registers
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.WRITE_SINGLE_COIL">
+            <summary>
+            Write single coil
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.WRITE_SINGLE_REGISTER">
+            <summary>
+            write single register
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.WRITE_MULTIPLE_COILS">
+            <summary>
+            write multiple coils
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.WRITE_MULTIPLE_REGISTERS">
+            <summary>
+            write multiple registers
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.READ_FILE_RECORD">
+            <summary>
+            read file record
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.WRITE_FILE_RECORD">
+            <summary>
+            write file record
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.MASK_WRITE_REGISTER">
+            <summary>
+             mask write registers
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.READ_WRITE_MULTIPLE_REGISTERS">
+            <summary>
+            mask read write multiple registers
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.READ_FIFO_QUEUE">
+            <summary>
+            Read FIFO queue
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.FunctionCodes.ENCAPSULATED_INTERFACE_TRANSPORT">
+            <summary>
+            Encapsulated Interface Transport
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusErrorCodes">
+            <summary>
+            ModbusErrorCodes class has Modbus specific error code and error messages.
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusErrorCodes.INVALID_INPUT">
+            <summary>
+            Represent input validation error
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusErrorCodes.INVALID_FLOAT_VALUE_MSG">
+            <summary>
+            Length of data given for conversion to flat should be in multiples of 4 to convert to float properly
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusErrorCodes.INVALID_INT_VALUE_MSG">
+            <summary>
+            Length of data given for conversion to flat should be in multiples of 4 to convert to float properly
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusErrorCodes.INVALID_OBJECTID">
+            <summary>
+            Valid object id ranges between 0 and 255
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusErrorCodes.INVALID_OUTPUT_LENGTH">
+            <summary>
+            Output length should be exactly equal to (write quantity x 2)
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusErrorCodes.INVALID_FILE_RECORD_SIZE">
+            <summary>
+            A file record size cannot be more than 252 bytes
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusErrorCodes.INVALID_RECORD_NUMBER">
+            <summary>
+            Record number range is between 0 and 9999
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusErrorCodes.MISSING_RECORD_DATA">
+            <summary>
+            Record data cannot be null or empty
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusErrorCodes.EMPTY_FILE_RECORD">
+            <summary>
+            No file record is set
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusResponseErrorCode">
+            <summary>
+            ModbusResponseErrorCode has the error codes sent by Modbus server as error responses.
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusResponseErrorCode.ILLEGAL_FUNCTION_CODE">
+            <summary>
+            Illegal function code
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusResponseErrorCode.ILLEGAL_DATA_ADDRESS">
+            <summary>
+            Illegal data address
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusResponseErrorCode.ILLEGAL_DATA_VALUE">
+            <summary>
+            Illegal data value
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusResponseErrorCode.SLAVE_DEVICE_FAILURE">
+            <summary>
+            Slave device failure
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusResponseErrorCode.ACKNOWLEDGE">
+            <summary>
+            Acknowledge
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusResponseErrorCode.SLAVE_DEVICE_BUSY">
+            <summary>
+            Slave device is busy
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusResponseErrorCode.MEMORY_PARITY_ERROR">
+            <summary>
+            Memory parity error
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusResponseErrorCode.GATEWAY_PATH_UNAVAILABLE">
+            <summary>
+            Gateway path not available
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.Constants.ModbusResponseErrorCode.GATEWAY_TARGET_DEVICE_FAILED_TO_RESPOND">
+            <summary>
+            Gateway target device failed to respond
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Executor.EITCallBack">
+            <summary>
+            EITCallBack class is a callback for notifying the response for <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadDeviceIdentificationRequest"/>
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.EITCallBack.#ctor(Com.DaacoWorks.Modbus.Pdu.Request.ReadDeviceIdentificationRequest,Com.DaacoWorks.Protocol.Executor.IResponseCallback{Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse,Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse},Com.DaacoWorks.Protocol.Executor.IConnection)">
+            <summary>
+            Instantiates a new EIT call back.
+            </summary>
+            <param name="pdu">the pdu</param>
+            <param name="callBack">the call back</param>
+            <param name="connection">the connection</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.EITCallBack.OnSuccess(Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse)">
+            <summary>
+            OnSuccess receives the response data for the request from peer
+            </summary>
+            <param name="response"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.EITCallBack.OnError(Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse)">
+            <summary>
+            OnError received the error data received from peer
+            </summary>
+            <param name="error"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusConnection">
+            <summary>
+            ModbusConnection class represents the socket connection established with a Modbus Server.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusConnection.#ctor(Com.DaacoWorks.Protocol.Model.ConnectionParameters)">
+            <summary>
+            Instantiates a new modbus connection.
+            </summary>
+            <param name="parameters">connection parameters</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusConnection.ResponseHandler">
+            <summary>
+            Gets response handler
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusConnection.GetEncoder">
+            <summary>
+            Gets Encoder
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusConnection.GetReadBufferSize">
+            <summary>
+            Gets read buffer size
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusConnection.GetWriteBufferSize">
+            <summary>
+            Gets write buffer size
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusConnection.GetModbusType">
+            <summary>
+            Gets Modbus type
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusPDUWrapper">
+            <summary>
+            ModbusPDUWrapper is a wrapper which wraps the Modbus request, callback and associated generated requestId.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusPDUWrapper.#ctor(Com.DaacoWorks.Protocol.Executor.IResponseCallback{Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse,Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse},Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus PDU wrapper.
+            </summary>
+            <param name="callBack">callback</param>
+            <param name="pdu">the pdu</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusPDUWrapper.GetTimeoutError">
+            <summary>
+            Gets timeout error which is thrown internally when peer did not respond for more than specified timeout time
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusRunnableTask">
+            <summary>
+            ModbusRunnableTask is an abstract class which represents Modbus Task to be submitted in the Request Executor.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusRunnableTask.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest,Com.DaacoWorks.Protocol.Executor.IResponseCallback{Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse,Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse},Com.DaacoWorks.Protocol.Executor.IConnection,System.Threading.CancellationToken)">
+            <summary>
+            Instantiates a new modbus runnable task.
+            </summary>
+            <param name="pdu">the pdu</param>
+            <param name="callBack">call back</param>
+            <param name="connection">the connection</param>
+            <param name="token">cancellation token</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusRunnableTask.InnerRun">
+            <summary>
+            Submits the request to the socket
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusTaskFactory">
+            <summary>
+            ModbusTaskFactory is a factory to create instance of ModbusRunnableTask
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Executor.ModbusTaskFactory.GetRunnableTask(Com.DaacoWorks.Modbus.Pdu.ModbusRequest,Com.DaacoWorks.Protocol.Executor.IResponseCallback{Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse,Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse},Com.DaacoWorks.Protocol.Executor.IConnection,System.Threading.CancellationToken)">
+            <summary>
+            Gets ModbusRunnableTask instance
+            </summary>
+            <param name="requestObject"></param>
+            <param name="callBack"></param>
+            <param name="connection"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse">
+            <summary>
+            ModbusErrorResponse class represents the error response received for a modbus request.
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse.responsePDU">
+            <summary>
+            response PDU
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse.SetResponsePDU(Com.DaacoWorks.Modbus.Pdu.ModbusResponse)">
+            <summary>
+            Sets the response PDU.
+            </summary>
+            <param name="pdu"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse.GetErrorCode">
+            <summary>
+            Gets the error code.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse.GetErrorMessage">
+            <summary>
+            Gets the error message.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse.GetLength">
+            <summary>
+            Gets length
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.ModbusErrorResponse.Request">
+            <summary>
+            Gets/Sets the request.
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.ModbusRequest">
+            <summary>
+             Base class for all the Modbus Request classes.
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.slaveId">
+            <summary>
+            Slave Id
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.startAddress">
+            <summary>
+            Start Address of the data
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.quantity">
+            <summary>
+            quantity
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.convertToHex">
+            <summary>
+            Convert to Hex or not
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.length">
+            <summary>
+            Length
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.#ctor(System.Byte,System.UInt16,System.UInt16,System.Boolean)">
+            <summary>
+            Instantiates a new Modbus request PDU.
+            </summary>
+            <param name="slaveId">the slave id</param>
+            <param name="startAddress">start address</param>
+            <param name="quantity">quantity</param>
+            <param name="convertToHex">convert to hex or not</param>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.RequestIdentifier">
+            <summary>
+            Gets/sets Reuqest identifier
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.GetFunctionCode">
+            <summary>
+            Gets Function Code
+            </summary>
+            <returns>function code</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.GetLength">
+            <summary>
+            Gets length
+            </summary>
+            <returns>length</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.GetSlaveId">
+            <summary>
+            Gets slave id
+            </summary>
+            <returns>slave id</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.GetStartAddress">
+            <summary>
+            Gets start address
+            </summary>
+            <returns>start address</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.GetQuantity">
+            <summary>
+            Gets quantity
+            </summary>
+            <returns>quantity</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.GetDataInBytes">
+            <summary>
+            Gets the data in bytes.
+            </summary>
+            <returns>data in byte array</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.GetHexByteArray(System.Int32,System.Int32)">
+            <summary>
+            Gets the hex byte array.
+            </summary>
+            <param name="value">the value</param>
+            <param name="length">length</param>
+            <returns></returns>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.ModbusRequest.IsScheduledRequest">
+            <summary>
+            Gets/Sets whether the request made is scheduled request or not
+            True represents Scheduled request and false represents either Synchronous or Asynchronous request
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.ModbusResponse">
+            <summary>
+            Base class for all the Modbus response classes.
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.ModbusResponse.Request">
+            <summary>
+            Gets/Sets Request
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusResponse.#ctor(System.Byte,System.Byte[])">
+            <summary>
+            Instantiates a new modbus response PDU.
+            </summary>
+            <param name="functionCode">function code</param>
+            <param name="data">data byte array</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusResponse.GetLength">
+            <summary>
+            Gets length
+            </summary>
+            <returns>length</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusResponse.GetDataInBytes">
+            <summary>
+            Gets the data in bytes.
+            </summary>
+            <returns>data in bytes</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusResponse.GetFunctionCode">
+            <summary>
+            Gets the function code
+            </summary>
+            <returns>function code</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusResponse.SetFunctionCode(System.Byte)">
+            <summary>
+            Sets the function code.
+            </summary>
+            <param name="functionCode">function code</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusResponse.GetByteCount">
+            <summary>
+            Gets the byte count.
+            </summary>
+            <returns>the byte count</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse">
+            <summary>
+            ModbusSuccessResponse base class is representing the success response received from Modbus server.
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse.responsePDU">
+            <summary>
+            response pdu
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse.requestPDU">
+            <summary>
+            request pdu
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus success response.
+            </summary>
+            <param name="requestPDU">request pdu</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse.SetResponsePDU(Com.DaacoWorks.Modbus.Pdu.ModbusResponse)">
+            <summary>
+            Sets response pdu
+            </summary>
+            <param name="pdu"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse.GetData">
+            <summary>
+            Gets data in bytes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse.GetLength">
+            <summary>
+            Gets response length
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.ModbusSuccessResponse.Request">
+            <summary>
+            Gets/Sets the request.
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.MaskWriteRegisterRequest">
+            <summary>
+            MaskWriteRegister class is used to modify the contents of a specified holding register 
+            using a combination of an AND mask, an OR mask, and the register's current contents. 
+            The function can be used to set or clear individual bits in the register
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.MaskWriteRegisterRequest.#ctor(System.Byte,System.UInt16,System.UInt16,System.UInt16,System.Boolean)">
+            <summary>
+            Instantiates a new mask write register.
+            </summary>
+            <param name="slaveId">slave id</param>
+            <param name="address">address</param>
+            <param name="andMask">And Mask</param>
+            <param name="orMask">Or Mask</param>
+            <param name="convertToHex">convert to hex</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.MaskWriteRegisterRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns>function code</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.MaskWriteRegisterRequest.GetLength">
+            <summary>
+            Gets length
+            </summary>
+            <returns>length</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.MaskWriteRegisterRequest.GetDataInBytes">
+            <summary>
+            Gets data in bytes
+            </summary>
+            <returns>data in bytes</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.MaskWriteRegisterRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.Request.MaskWriteRegisterRequest.AndMask">
+            <summary>
+            Gets/Sets And Mask
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.Request.MaskWriteRegisterRequest.OrMask">
+            <summary>
+            Gets/Sets Or Mask
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadCoilsRequest">
+            <summary>
+            ReadCoils request is used to read from 1 to 2000 contiguous status of coils in a remote device.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadCoilsRequest.#ctor(System.Byte,System.UInt16,System.UInt16,System.Boolean)">
+            <summary>
+            Instantiates a new read coils.
+            </summary>
+            <param name="slaveId">slave id</param>
+            <param name="startAddress">start address</param>
+            <param name="quantity">quantity</param>
+            <param name="convertToHex">convert to hex</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadCoilsRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadCoilsRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadDeviceIdentificationRequest">
+            <summary>
+            ReadDeviceIdentification class is used to read the identification and additional information relative to the 
+            physical and functional description of a remote device.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadDeviceIdentificationRequest.#ctor(System.Byte,Com.DaacoWorks.Modbus.Pdu.Constants.Constants.DeviceID,System.Byte)">
+            <summary>
+            ReadDeviceIdentification class is used to read the identification and additional information relative to the 
+            physical and functional description of a remote device.
+            </summary>
+            <param name="slaveId">slave id</param>
+            <param name="deviceId">device id</param>
+            <param name="objectId">object id</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadDeviceIdentificationRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns>function code</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadDeviceIdentificationRequest.GetDataInBytes">
+            <summary>
+            Gets data in bytes
+            </summary>
+            <returns>data in bytes</returns>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.Request.ReadDeviceIdentificationRequest.ObjectId">
+            <summary>
+            Gets/sets object id
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.Request.ReadDeviceIdentificationRequest.DeviceId">
+            <summary>
+            Gets/Sets device id
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadDeviceIdentificationRequest.GetLength">
+            <summary>
+            Gets length
+            </summary>
+            <returns>length</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadDeviceIdentificationRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadDiscreteInputsRequest">
+            <summary>
+            ReadDiscreteInputs class is used to read from 1 to 2000 contiguous status of discrete inputs in a remote device.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadDiscreteInputsRequest.#ctor(System.Byte,System.UInt16,System.UInt16,System.Boolean)">
+            <summary>
+            ReadDiscreteInputs class is used to read from 1 to 2000 contiguous status of discrete inputs in a remote device.
+            </summary>
+            <param name="slaveId">slave id</param>
+            <param name="startAddress">start address</param>
+            <param name="quantity">quantity</param>
+            <param name="convertToHex">convert to hex</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadDiscreteInputsRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadDiscreteInputsRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadFIFOQueueRequest">
+            <summary>
+            ReadFIFOQueue class allows to read the contents of a First-In-First-Out (FIFO) queue of register in a remote device.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadFIFOQueueRequest.#ctor(System.Byte,System.UInt16,System.Boolean)">
+            <summary>
+            Instantiates a new read FIFO queue.
+            </summary>
+            <param name="slaveId">slave id</param>
+            <param name="FIFOAddress">FIFO address</param>
+            <param name="convertToHex">convert to hex</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadFIFOQueueRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadFIFOQueueRequest.GetDataInBytes">
+            <summary>
+            Gets data in bytes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadFIFOQueueRequest.GetLength">
+            <summary>
+            Gets length
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadFIFOQueueRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadFileRecordRequest">
+            <summary>
+            ReadFileRecord class is used to perform a file record read. 
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadFileRecordRequest.#ctor(System.Byte,Com.DaacoWorks.Modbus.Model.FileRecordData[])">
+            <summary>
+            Instantiates a new read file record.
+            </summary>
+            <param name="slaveId"></param>
+            <param name="fileRecords"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadFileRecordRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadFileRecordRequest.GetLength">
+            <summary>
+            Gets length
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadFileRecordRequest.GetDataInBytes">
+            <summary>
+            Gets data in bytes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadFileRecordRequest.GetFileRecords">
+            <summary>
+            Gets file records
+            </summary>
+            <returns>file record</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadFileRecordRequest.SetFileRecords(Com.DaacoWorks.Modbus.Model.FileRecordData[])">
+            <summary>
+            Sets file records
+            </summary>
+            <param name="fileRecords">file records</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadFileRecordRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadHoldingRegistersRequest">
+            <summary>
+            ReadHoldingRegisters class is used to read the contents of a contiguous block of holding registers in a remote device.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadHoldingRegistersRequest.#ctor(System.Byte,System.UInt16,System.UInt16,System.Boolean)">
+            <summary>
+            Instantiates a new read holding registers.
+            </summary>
+            <param name="slaveId">slave id</param>
+            <param name="startAddress">start address</param>
+            <param name="quantity">quantity</param>
+            <param name="convertToHex">convert to hex</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadHoldingRegistersRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns>function code</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadHoldingRegistersRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadInputRegistersRequest">
+            <summary>
+            ReadInputRegisters class is used to read from 1 to 125 contiguous input registers in a remote device.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadInputRegistersRequest.#ctor(System.Byte,System.UInt16,System.UInt16,System.Boolean)">
+            <summary>
+            Instantiates a new read input registers.
+            </summary>
+            <param name="slaveId">slave id</param>
+            <param name="startAddress">start address</param>
+            <param name="quantity">quantity</param>
+            <param name="convertToHex">convert to hex</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadInputRegistersRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadInputRegistersRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadWriteMultipleRegistersRequest">
+            <summary>
+            ReadWriteMultipleRegisters class performs a combination of one read operation and one write operation in a 
+            single MODBUS transaction. The write operation is performed before the read.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadWriteMultipleRegistersRequest.#ctor(System.Byte,System.UInt16,System.UInt16,System.UInt16,System.UInt16,System.Boolean)">
+            <summary>
+            Instantiates a new read write multiple registers.
+            </summary>
+            <param name="slaveId">slave id</param>
+            <param name="readAddress">read address</param>
+            <param name="readQuantity">read quantity</param>
+            <param name="writeAddress">write address</param>
+            <param name="writeQuantity">write quantity</param>
+            <param name="convertToHex">convert to hex</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadWriteMultipleRegistersRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadWriteMultipleRegistersRequest.GetLength">
+            <summary>
+            Gets length
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.Request.ReadWriteMultipleRegistersRequest.WriteValues">
+            <summary>
+            Gets/Sets Write Value
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadWriteMultipleRegistersRequest.GetDataInBytes">
+            <summary>
+            Gets data in bytes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.ReadWriteMultipleRegistersRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.Request.ReadWriteMultipleRegistersRequest.WriteAddress">
+            <summary>
+            gets/sets Write address
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.Request.ReadWriteMultipleRegistersRequest.WriteQuantity">
+            <summary>
+            Gets/Sets write quantity
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.WriteFileRecordRequest">
+            <summary>
+            WriteFileRecord class is used to perform a file record write.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteFileRecordRequest.#ctor(System.Byte,Com.DaacoWorks.Modbus.Model.FileRecordData[])">
+            <summary>
+            Instantiates a new write file record.
+            </summary>
+            <param name="slaveId">slave id</param>
+            <param name="fileRecords">file records</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteFileRecordRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteFileRecordRequest.GetLength">
+            <summary>
+            Gets length
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteFileRecordRequest.GetFileRecordSize">
+            <summary>
+            Gets file record size
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteFileRecordRequest.GetDataInBytes">
+            <summary>
+            Gets data in bytes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteFileRecordRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.Request.WriteFileRecordRequest.FileRecords">
+            <summary>
+            Gets/Sets file records
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleCoilsRequest">
+            <summary>
+            WriteMultipleCoils class is used to force each coil in a sequence of coils to either ON or OFF in a remote device.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleCoilsRequest.#ctor(System.Byte,System.UInt16,System.UInt16,System.Boolean)">
+            <summary>
+            Instantiates a new write multiple coils.
+            </summary>
+            <param name="slaveId">slave id</param>
+            <param name="startAddress">start address</param>
+            <param name="quantity">quantity</param>
+            <param name="convertToHex">convert to hex</param>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleCoilsRequest.WriteValues">
+            <summary>
+            Gets/sets write values
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleCoilsRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleCoilsRequest.GetLength">
+            <summary>
+            Gets length
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleCoilsRequest.GetDataInBytes">
+            <summary>
+            Gets data in bytes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleCoilsRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleRegistersRequest">
+            <summary>
+            WriteMultipleRegisters class is used to write a block of contiguous registers (1 to 123 registers) in a remote device.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleRegistersRequest.#ctor(System.Byte,System.UInt16,System.UInt16,System.Boolean)">
+            <summary>
+            Instantiates a new write multiple registers.
+            </summary>
+            <param name="slaveId">slave id</param>
+            <param name="startAddress">start address</param>
+            <param name="quantity">quantity</param>
+            <param name="convertToHex">convert to hex</param>
+        </member>
+        <member name="P:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleRegistersRequest.WriteValues">
+            <summary>
+            Gets/Sets Write Values
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleRegistersRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleRegistersRequest.GetLength">
+            <summary>
+            Gets length
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleRegistersRequest.GetDataInBytes">
+            <summary>
+            Gets data in bytes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleRegistersRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.WriteSingleCoilRequest">
+            <summary>
+            WriteSingleCoil class is used to write a single output to either ON or OFF in a remote device
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteSingleCoilRequest.#ctor(System.Byte,System.UInt16,Com.DaacoWorks.Modbus.Pdu.Constants.Constants.CoilState,System.Boolean)">
+            <summary>
+            Instantiates a new write single coil.
+            </summary>
+            <param name="slaveId">slave id</param>
+            <param name="startAddress">start address</param>
+            <param name="onOrOff">On or off</param>
+            <param name="convertToHex">convert to hex</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteSingleCoilRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteSingleCoilRequest.GetCoilState">
+            <summary>
+            Gets the CoilSate that is to be written
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteSingleCoilRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Request.WriteSingleRegisterRequest">
+            <summary>
+            WriteSingleRegister class is used to write a single holding register in a remote device
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteSingleRegisterRequest.#ctor(System.Byte,System.UInt16,System.UInt16,System.Boolean)">
+            <summary>
+            Instantiates a new write single register.
+            </summary>
+            <param name="slaveId">slave id</param>
+            <param name="address">address</param>
+            <param name="value">value</param>
+            <param name="convertToHex">convert to hex</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteSingleRegisterRequest.GetFunctionCode">
+            <summary>
+            Gets function code
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteSingleRegisterRequest.GetWriteValue">
+            <summary>
+            Gets the register value to be written
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Request.WriteSingleRegisterRequest.Validate">
+            <summary>
+            Validate request
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.MaskWriteRegisterResponse">
+            <summary>
+            MaskWriteRegistersResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.MaskWriteRegisterRequest"/> }
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.MaskWriteRegisterResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus mask write registers response.
+            </summary>
+            <param name="requestPDU">request pdu</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.MaskWriteRegisterResponse.GetAndMask">
+            <summary>
+            Gets the and mask.
+            </summary>
+            <returns>And Mask value</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.MaskWriteRegisterResponse.GetOrMask">
+            <summary>
+            Gets the or mask.
+            </summary>
+            <returns>Or Mask Value</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.ReadCoilsResponse">
+            <summary>
+            ReadCoilResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadCoilsRequest"/> 
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadCoilsResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus read coil response.
+            </summary>
+            <param name="requestPDU">request pdu</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadCoilsResponse.GetCoilStatus">
+            <summary>
+            Gets the coil status.
+            </summary>
+            <returns>coil statuses</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.ReadDeviceIdentificationResponse">
+            <summary>
+            ReadDeviceIdentificationResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadDeviceIdentificationRequest"/> 
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadDeviceIdentificationResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Creates instance of ModbusReadDeviceIdentificationResponse
+            </summary>
+            <param name="requestPDU"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadDeviceIdentificationResponse.AddObjects(Com.DaacoWorks.Modbus.Model.DeviceInfo[])">
+            <summary>
+            Adds the objects.
+            </summary>
+            <param name="objects">objects</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadDeviceIdentificationResponse.GetDeviceInformation">
+            <summary>
+            Gets the objects.
+            </summary>
+            <returns>objects</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.ReadDiscreteInputsResponse">
+            <summary>
+            ReadDiscreteInputResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadDiscreteInputsRequest"/> 
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadDiscreteInputsResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus read discrete input response.
+            </summary>
+            <param name="requestPDU">request pdu</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadDiscreteInputsResponse.GetDiscreteInputStatus">
+            <summary>
+            Gets the discrete input status.
+            </summary>
+            <returns>the discrete input status</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.ReadFIFOQueueResponse">
+            <summary>
+            ReadFIFOQueueResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadFIFOQueueRequest" /> 
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadFIFOQueueResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus FIFO queue response.
+            </summary>
+            <param name="requestPDU">request PDU</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.ReadFileRecordResponse">
+            <summary>
+            ReadFileRecordResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadFileRecordRequest"/> 
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadFileRecordResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus file record success response.
+            </summary>
+            <param name="requestPDU">request pdu</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadFileRecordResponse.GetFileRecords">
+            <summary>
+            Gets the file records.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.ReadHoldingRegistersResponse">
+            <summary>
+            ReadHoldingRegistersResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadHoldingRegistersRequest"/> 
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadHoldingRegistersResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus read holding registers response.
+            </summary>
+            <param name="requestPDU">request pdu</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadHoldingRegistersResponse.GetRegisterValues">
+            <summary>
+            Gets the register data responded
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.ReadInputRegistersResponse">
+            <summary>
+            ReadInputRegistersResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadInputRegistersRequest"/> 
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadInputRegistersResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus read input registers response.
+            </summary>
+            <param name="requestPDU">request pdu</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.ReadWriteMultipleRegistersResponse">
+            <summary>
+            ReadWriteMultipleRegistersResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.ReadWriteMultipleRegistersRequest"/> 
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.ReadWriteMultipleRegistersResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new Read Write Multiple Registers Response
+            </summary>
+            <param name="requestPDU"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.WriteFileRecordResponse">
+            <summary>
+            WriteFileRecordResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.WriteFileRecordRequest"/>
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteFileRecordResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus file record success response.
+            </summary>
+            <param name="requestPDU">request pdu</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteFileRecordResponse.GetFileRecords">
+            <summary>
+            Gets the file records.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.WriteMultipleCoilsResponse">
+            <summary>
+            WriteMultipleCoilsResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleCoilsRequest"/> 
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteMultipleCoilsResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus write multiple coils response.
+            </summary>
+            <param name="requestPDU">request pdu</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteMultipleCoilsResponse.GetStartingAddress">
+            <summary>
+            Gets the starting address.
+            </summary>
+            <returns>start address</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteMultipleCoilsResponse.GetQuantity">
+            <summary>
+            Gets the Quantity of values written.
+            </summary>
+            <returns>values</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.WriteMultipleRegistersResponse">
+            <summary>
+            ModbusWriteMultipleRegistersResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.WriteMultipleRegistersRequest"/> 
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteMultipleRegistersResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus write multiple registers response.
+            </summary>
+            <param name="requestPDU">request pdu</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteMultipleRegistersResponse.GetStartingAddress">
+            <summary>
+            Gets the starting address.
+            </summary>
+            <returns>start address</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteMultipleRegistersResponse.GetQuantity">
+            <summary>
+            Gets quantity of written values
+            </summary>
+            <returns>values</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.WriteSingleCoilResponse">
+            <summary>
+            ModbusWriteSingleCoilResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.WriteSingleCoilRequest" />
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteSingleCoilResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus write single coil response.
+            </summary>
+            <param name="requestPDU">request pdu</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteSingleCoilResponse.GetStartingAddress">
+            <summary>
+            Gets start address
+            </summary>
+            <returns>start address</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteSingleCoilResponse.GetCoilState">
+            <summary>
+            Gets value
+            </summary>
+            <returns>value</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Response.WriteSingleRegisterResponse">
+            <summary>
+            ModbusWriteSingleRegisterResponse is a success response for the request <see cref="T:Com.DaacoWorks.Modbus.Pdu.Request.WriteSingleRegisterRequest"/>}
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteSingleRegisterResponse.#ctor(Com.DaacoWorks.Modbus.Pdu.ModbusRequest)">
+            <summary>
+            Instantiates a new modbus write single register response.
+            </summary>
+            <param name="requestPDU">request pdu</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteSingleRegisterResponse.GetStartingAddress">
+            <summary>
+            Gets start address
+            </summary>
+            <returns>start address</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Response.WriteSingleRegisterResponse.GetValue">
+            <summary>
+            Gets value
+            </summary>
+            <returns>value</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Pdu.Util.ModbusUtil">
+            <summary>
+            ModbusUtil class has a set of utility methods.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Util.ModbusUtil.ToHexByteArray(System.Int32,System.Int32)">
+            <summary>
+            Converts integer value to hexa decimal byte array
+            </summary>
+            <param name="data">the data</param>
+            <param name="size">the size</param>
+            <returns>hexa byte array</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Util.ModbusUtil.ToHexByteArray(System.String,System.Int32)">
+            <summary>
+            Converts hex string to hexa byte array
+            </summary>
+            <param name="hexString"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Util.ModbusUtil.CRC16(System.Byte[])">
+            <summary>
+            Gets the CRC16 byte array for a given data array.
+            </summary>
+            <param name="dataArr">byte array</param>
+            <returns>CRC16 byte array</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Util.ModbusUtil.LRC(System.Byte[])">
+            <summary>
+            Gets LRC byte array for a given data array
+            </summary>
+            <param name="dataArr">data array</param>
+            <returns>LRC byte array</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Util.ModbusUtil.GetASCII(System.Byte[])">
+            <summary>
+            Gets ASCII byte array for hex byte array.
+            </summary>
+            <param name="data">byte array</param>
+            <returns>ascii byte array</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Util.ModbusUtil.ToFloatValue(System.Byte[],System.Boolean,System.Boolean)">
+            <summary>
+            converts the byte array into float value.
+            </summary>
+            <param name="data">the data</param>
+            <param name="byteSwap">the order of bytes should be swapped within a two byte word or not</param>
+            <param name="wordSwap">the order of words should be swapped or not</param>
+            <returns>the float[]</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Util.ModbusUtil.ToInt32(System.Byte[],System.Int32)">
+            <summary>
+            Converts byte array and a position given, converts to 32 bit integer
+            </summary>
+            <param name="data">byte array</param>
+            <param name="index">start position in the byte array</param>
+            <returns>32 bit int value</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Util.ModbusUtil.ToInt16(System.Byte[],System.Int32)">
+            <summary>
+            Converts byte array and a position given, converts to 16 bit integer
+            </summary>
+            <param name="data">byte array</param>
+            <param name="index">start position in the byte array</param>
+            <returns>16 bit int value</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Modbus.Pdu.Util.ModbusUtil.ToIntValue(System.Byte[],System.Boolean,System.Boolean)">
+            <summary>
+            Converts the byte array into integer value
+            </summary>
+            <param name="data">byte array data</param>
+            <param name="byteSwap">the order of bytes should be swapped within a two byte word or not</param>
+            <param name="wordSwap">the order of words should be swapped or not</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Modbus.Response.Callback.IModbusResponseCallback">
+            <summary>
+            ModbusResponseCallback interface represents methods to handle the responses.
+            </summary>
+        </member>
+    </members>
+</doc>

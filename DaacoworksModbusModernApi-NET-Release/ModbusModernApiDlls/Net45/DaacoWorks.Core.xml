@@ -1,0 +1,1268 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DaacoWorks.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Com.DaacoWorks.Protocol.Clients.Client">
+            <summary>
+            abstract class to initialize the client instance.
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Clients.Client.connection">
+            <summary>
+            connection
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Clients.Client.connectionParameters">
+            <summary>
+            connection parameters
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Clients.Client.Init">
+            <summary>
+            Initializes the client
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Clients.ClientFactory`2">
+            <summary>
+            Factory class to create client instances.
+            </summary>
+            <typeparam name="TClient"></typeparam>
+            <typeparam name="TException"></typeparam>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Clients.ClientFactory`2.AddClient(`0)">
+            <summary>
+            Adds the client into local cache if not already exists.
+            </summary>
+            <param name="client">the client to be added</param>
+            <returns>added or existing client</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Clients.ClientFactory`2.RemoveClient(`0)">
+            <summary>
+            Removes the client from the local cache.
+            </summary>
+            <param name="client">the client to be removed</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Clients.ClientFactory`2.Create(Com.DaacoWorks.Protocol.Model.ConnectionParameters)">
+            <summary>
+            Create a client instance and returns
+            </summary>
+            <param name="connectionParameters">connection parameters</param>
+            <returns>the client</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Clients.IClient">
+            <summary>
+            Marker client interface
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Clients.IClient.Shutdown">
+            <summary>
+            Shuts down the connection to the peer.
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Clients.IClient`4">
+            <summary>
+            Client interface defines the basic operations to be supported by the implementors.
+            </summary>
+            <typeparam name="TRequest">Request to be executed</typeparam>
+            <typeparam name="TResponse">Response received from request submitted</typeparam>
+            <typeparam name="TSuccess">Success response received from the peer</typeparam>
+            <typeparam name="TError">Error response received from the peer</typeparam>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Clients.IClient`4.Submit(`0)">
+            <summary>
+            Submits the request and returns the future of response.
+            </summary>
+            <param name="requestObject">the request object</param>
+            <returns>the future object to track response</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Clients.IClient`4.SubmitAsync(`0,Com.DaacoWorks.Protocol.Executor.IResponseCallback{`2,`3})">
+            <summary>
+            Submits the request with a callback.Response will be notified to callback.
+            </summary>
+            <param name="requestObject">the request object</param>
+            <param name="callBack">the call back method that will be called when execution is completed</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Clients.IClient`4.Schedule(`0,System.TimeSpan,Com.DaacoWorks.Protocol.Executor.IResponseCallback{`2,`3})">
+            <summary>
+            Schedules the request and response will be notified to callback periodically.
+            </summary>
+            <param name="requestObject">the request object</param>
+            <param name="interval">the interval</param>
+            <param name="callBack">the call back</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Codec.IDecoder`1">
+            <summary>
+            Decoder interface to decode the incoming bytes.
+            </summary>
+            <typeparam name="TResponse"></typeparam>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Codec.IDecoder`1.Decode(Com.DaacoWorks.Protocol.Model.ConnectionParameters,System.IO.MemoryStream)">
+            <summary>
+            Decode the bytes available in the input buffer
+            </summary>
+            <param name="connectionParameters">the connection parameters</param>
+            <param name="input">input as memory stream</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Codec.IEncoder`1">
+            <summary>
+            Encode interface to encode the request object into output buffer.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Codec.IEncoder`1.Encode(`0,System.IO.MemoryStream)">
+            <summary>
+            Encode the request object into output buffer.
+            </summary>
+            <param name="metaInfo">meta information</param>
+            <param name="output">output as memory stream</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Codec.IResponseHandler">
+            <summary>
+            interface to handle the incoming bytes.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Codec.IResponseHandler.HandleReadBytes(System.Byte[])">
+            <summary>
+            Handle read bytes.
+            </summary>
+            <param name="data">the data</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Exception.ConnectionException">
+            <summary>
+             ConnectionException is a runtime exception thrown when there is some issue encountered 
+             while opening a socket connection.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Exception.ConnectionException.#ctor(System.Int32,System.String)">
+            <summary>
+            Instantiates a new connection exception.
+            </summary>
+            <param name="errorCode">error code</param>
+            <param name="message"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Exception.ConnectionException.GetErrorCode">
+            <summary>
+            Gets the error code
+            </summary>
+            <returns>error code</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Exception.ErrorCodes">
+            <summary>
+             Error codes and its error messages constants.
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Exception.ErrorCodes.INVALID_CONNECTION_PARAMS">
+            <summary>
+            Error code for Invalid connection parameter
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Exception.ErrorCodes.CONNECT_ERROR">
+            <summary>
+            Error code for connection error
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Exception.ErrorCodes.CONNECT_ERROR_MSG">
+            <summary>
+            Error message for failed connection
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Exception.ErrorCodes.INVALID_CONNECTION_PARAMS_MSG">
+            <summary>
+            Error message for invalid connection parameter
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Exception.ErrorCodes.CANNOT_READ_CHANNEL">
+            <summary>
+            Error message for cannot read channel
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Exception.ErrorCodes.CONNECTION_DISPOSED_MSG">
+            <summary>
+            Error message indicating disposal of underlying connection
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Exception.ProtocolException">
+            <summary>
+            Represents Protocol layer Exception 
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Exception.ProtocolException.#ctor(System.String)">
+            <summary>
+            Instantiates ProtocolException
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.ChannelFactory">
+            <summary>
+             Factory class to create instance of channel interface.
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.ChannelInboundHandler`3">
+            <summary>
+             Handler class to handle the incoming bytes read from socket.
+            </summary>
+            <typeparam name="TRequest">request for which response is expected</typeparam>
+            <typeparam name="TSuccess">Success response received from the peer</typeparam>
+            <typeparam name="TError">Error response received from the peer</typeparam>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ChannelInboundHandler`3.#ctor(Com.DaacoWorks.Protocol.Model.ConnectionParameters,Com.DaacoWorks.Protocol.Codec.IDecoder{Com.DaacoWorks.Protocol.Model.Response})">
+            <summary>
+            Instantiates a new channel inbound handler.
+            </summary>
+            <param name="connectionParameters">connection paramaters</param>
+            <param name="decoder">decoder of the response</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ChannelInboundHandler`3.HandleReadBytes(System.Byte[])">
+            <summary>
+            Submits response data for processing
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.IConnection">
+            <summary>
+            Represents a connection instance
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.IConnection.Shutdown">
+            <summary>
+            Shutsdown a connection
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.Connection`2">
+            <summary>
+             Connection class which represents socket connection with the peer.
+            </summary>
+            <typeparam name="TRequestPDUWrapper">request object to be written to socket</typeparam>
+            <typeparam name="TResponse">response object transformed from bytes read from socket</typeparam>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.Connection`2.#ctor(Com.DaacoWorks.Protocol.Model.ConnectionParameters)">
+            <summary>
+            Instantiates new connection
+            </summary>
+            <param name="connectionParams">connection parameters</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.Connection`2.GetConnectionParameters">
+            <summary>
+            Gets the connection parameters.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.Connection`2.Write(`0)">
+            <summary>
+            Write data to the socket
+            </summary>
+            <param name="pduWrapper">the pdu wrapper</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.Connection`2.Shutdown">
+            <summary>
+            Shutdown the connection and close underlying channel
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.Connection`2.ResponseHandler">
+            <summary>
+            Response handler
+            </summary>
+            <returns>response handler</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.Connection`2.GetEncoder">
+            <summary>
+            gets the encoder
+            </summary>
+            <returns>encoder</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.Connection`2.GetWriteBufferSize">
+            <summary>
+            Gets Write buffer size
+            </summary>
+            <returns>size of write buffer as integer</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.Connection`2.GetReadBufferSize">
+            <summary>
+            Gets Read buffer size
+            </summary>
+            <returns>size of read buffer as integer</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.Connection`2.Dispose">
+            <summary>
+            Disposes the connection by closing the underlying channel 
+            and frees all acquired resources
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.ExecutorFactory">
+            <summary>
+            Factory class to provide single threaded executor service for request and response.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ExecutorFactory.GetGlobalRequestExecutor">
+            <summary>
+            Gets the global request executor.
+            </summary>
+            <returns>the global request executor</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ExecutorFactory.GetGlobalResponseExecutor">
+            <summary>
+            Gets the global response executor.
+            </summary>
+            <returns>the global response executor</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.IExecutorTask">
+            <summary>
+            Represents an executor task
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.ExecutorTask`3">
+            <summary>
+            ExecutorTask is a wrapper of request to be executed, callback to be called back after receiving response and connection into which request to be written.
+            </summary>
+            <typeparam name="TRequest">request to be executed</typeparam>
+            <typeparam name="TSuccess">success response from peer</typeparam>
+            <typeparam name="TError">error response from peer</typeparam>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Executor.ExecutorTask`3.pdu">
+            <summary>
+            Request Protocol Data Unit
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Executor.ExecutorTask`3.callBack">
+            <summary>
+            Response callback object handling success and failures
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Executor.ExecutorTask`3.connection">
+            <summary>
+            connection object
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ExecutorTask`3.#ctor(`0,Com.DaacoWorks.Protocol.Executor.IResponseCallback{`1,`2},Com.DaacoWorks.Protocol.Executor.IConnection,System.Threading.CancellationToken)">
+            <summary>
+            Instantiates a new ExecutorTask.
+            </summary>
+            <param name="pdu"></param>
+            <param name="callBack"></param>
+            <param name="connection"></param>
+            <param name="cancellationToken"></param>
+        </member>
+        <member name="P:Com.DaacoWorks.Protocol.Executor.ExecutorTask`3.CancellationToken">
+            <summary>
+            Cancellation token
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ExecutorTask`3.Run">
+            <summary>
+            Runs the task
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ExecutorTask`3.InnerRun">
+            <summary>
+            Abstract inner run which is to be implemented by derived class
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.GlobalExecutor">
+            <summary>
+            Enumerator to hold single threaded executor service for request and response.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.GlobalExecutor.GetRequestExecutor">
+            <summary>
+            Gets the request executor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.GlobalExecutor.GetResponseExecutor">
+            <summary>
+            Gets the response executor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.CompletionHandler">
+            <summary>
+            Handler for data read from socket
+            </summary>
+            <param name="bytesRead"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.IChannel">
+            <summary>
+             IChannel interface exposes basic channel operations like open,read, write and close.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.IChannel.OpenChannel">
+            <summary>
+            Open Channel
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.IChannel.Read(System.IO.MemoryStream,Com.DaacoWorks.Protocol.Executor.CompletionHandler)">
+            <summary>
+            Read the bytes into byte buffer.
+            </summary>
+            <param name="readBuffer">read buffer</param>
+            <param name="handler">handler to process read data</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.IChannel.Write(System.IO.MemoryStream)">
+            <summary>
+            Writes bytes into socket.
+            </summary>
+            <param name="writeBuffer">write buffer</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.IChannel.CloseChannel">
+            <summary>
+            Close channel
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.IRequestExecutor">
+            <summary>
+             IRequestExecutor interface represents methods to execute the requests.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.IRequestExecutor.Submit(Com.DaacoWorks.Protocol.Executor.IExecutorTask)">
+            <summary>
+            Submits the task for execution
+            </summary>
+            <param name="task"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.IRequestExecutor.Schedule(Com.DaacoWorks.Protocol.Executor.IExecutorTask,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Schedules the task to be executed at a periodic interval.
+            </summary>
+            <param name="task">the task</param>
+            <param name="dueTime">due time</param>
+            <param name="interval">interval</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.IResponseCallback`2">
+            <summary>
+            IResponseCallback interface represents methods to handle the responses.
+            </summary>
+            <typeparam name="TSuccess">Success response from the Peer</typeparam>
+            <typeparam name="TError">Error  response from the Peer</typeparam>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.IResponseCallback`2.OnSuccess(`0)">
+            <summary>
+            On success.
+            </summary>
+            <param name="response">success response</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.IResponseCallback`2.OnError(`1)">
+            <summary>
+            On error.
+            </summary>
+            <param name="error">error response</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.IResponseExecutor">
+            <summary>
+            IResponseExecutor interface represents a method to execute the response.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.IResponseExecutor.SubmitResponse(Com.DaacoWorks.Protocol.Executor.IRunnable)">
+            <summary>
+            Submit response
+            </summary>
+            <param name="task">the task</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.IRunnable">
+            <summary>
+            Represents a runnable task
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Protocol.Executor.IRunnable.CancellationToken">
+            <summary>
+            Cancellation token
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.IRunnable.Run">
+            <summary>
+            Runs the task
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.PDUFutureTask">
+            <summary>
+            PDUFutureTask defines what a task is
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.PDUFutureTask.#ctor(Com.DaacoWorks.Protocol.Executor.IExecutorTask)">
+            <summary>
+            Instantiates a new PDU Future Task
+            </summary>
+            <param name="task">the task</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.PDUFutureTask.GetTask">
+            <summary>
+            Gets the task
+            </summary>
+            <returns>the task</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.RequestExecutor">
+            <summary>
+            RequestExecutor is a executor service which executes and schedules tasks.
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.RequestMap`3">
+            <summary>
+            RequestMap is a singleton instance which caches the request information until either the response is received
+             for the request or evictor thread removes it after a given REQUEST_TIME_OUT(default is 5000 milliseconds) is reached.
+             
+            RequestMap will call either onSuccess or onError methods of the response callback depends on the response received for a request.
+            </summary>
+            <typeparam name="TRequest">Request that was submitted</typeparam>
+            <typeparam name="TSuccess">Success response received from Peer</typeparam>
+            <typeparam name="TError">Error response received from Peer</typeparam>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Executor.RequestMap`3.requestTimeout">
+            <summary>
+            Request time out
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.RequestMap`3.GetInstance">
+            <summary>
+            Gets the single instance of RequestMap.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.RequestMap`3.NotifySuccess(`1)">
+            <summary>
+            Notifies Success Response
+            </summary>
+            <param name="response">success response</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.RequestMap`3.NotifyError(`2)">
+            <summary>
+            Notifies Error Response
+            </summary>
+            <param name="errorResp">error response</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.RequestMap`3.IsResponseRecieved(Com.DaacoWorks.Protocol.Model.ProtocolDataUnit)">
+            <summary>
+            Checks if is response recieved.
+            </summary>
+            <param name="pdu">the PDU</param>
+            <returns>true if response received</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.RequestMap`3.GetRequestPDU(Com.DaacoWorks.Protocol.Model.RequestIdentifier)">
+            <summary>
+            Gets the request PDU
+            </summary>
+            <param name="requestId">request id</param>
+            <returns>the request PDU</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.RequestMap`3.IsEmpty">
+            <summary>
+            Checks if map is empty
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.RequestMap`3.AddRequestPDUMetaInfo(Com.DaacoWorks.Protocol.Executor.RequestPDUWrapper{`0,`1,`2})">
+            <summary>
+            Adds the request PDU meta info.
+            </summary>
+            <param name="metaInfo"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.RequestMap`3.RemoveRequestPDUMetaInfo(Com.DaacoWorks.Protocol.Model.RequestIdentifier)">
+            <summary>
+            Removes the request PDU meta info.
+            </summary>
+            <param name="requestId"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.IRequestPDUWrapper">
+            <summary>
+            IRequestPDUWrapper interface to represent Request PDU Wrapper
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.RequestPDUWrapper`3">
+            <summary>
+            RequestPDUWrapper wraps the request, callback and associated generated requestId.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TSuccess"></typeparam>
+            <typeparam name="TError"></typeparam>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.RequestPDUWrapper`3.#ctor(Com.DaacoWorks.Protocol.Executor.IResponseCallback{`1,`2},`0)">
+            <summary>
+            Instantiates a new request PDU wrapper.
+            </summary>
+            <param name="callBack"></param>
+            <param name="pdu"></param>
+        </member>
+        <member name="P:Com.DaacoWorks.Protocol.Executor.RequestPDUWrapper`3.Time">
+            <summary>
+            Gets/Sets the time
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Protocol.Executor.RequestPDUWrapper`3.CallBack">
+            <summary>
+            Gets/Sets the callback which intimates success or failure of request
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Protocol.Executor.RequestPDUWrapper`3.Pdu">
+            <summary>
+            Gets/Sets the PDU
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.RequestPDUWrapper`3.GetRequestId">
+            <summary>
+            Gets Request Id
+            </summary>
+            <returns>the request id</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.RequestPDUWrapper`3.GetTimeoutError">
+            <summary>
+            Gets the timeout error
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.ResponseExecutor">
+            <summary>
+            ResponseExecutor is a executor service which executes the response received.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ResponseExecutor.#ctor(System.Int32)">
+            <summary>
+            Instantiates a new response executor.
+            </summary>
+            <param name="numberOfThreads">number of threads to run in parallel</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ResponseExecutor.SubmitResponse(Com.DaacoWorks.Protocol.Executor.IRunnable)">
+            <summary>
+            Submit response for execution
+            </summary>
+            <param name="task"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.ScheduledTask">
+            <summary>
+            ScheduledTask represents a task being scheduled
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ScheduledTask.#ctor(Com.DaacoWorks.Protocol.Executor.ScheduledThreadPoolExecutor,Com.DaacoWorks.Protocol.Executor.IRunnable,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Instantiates scheduled task
+            </summary>
+            <param name="executor"></param>
+            <param name="taskScheduled"></param>
+            <param name="dueTime"></param>
+            <param name="period"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ScheduledTask.Dispose">
+            <summary>
+            Disposes a scheduled task
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.ScheduledThreadPoolExecutor">
+            <summary>
+            Provides a task scheduler that allows to queue and schedule task
+            TODO: ensure dequeueing task only after previous task execution is completed
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.TaskFactory`3">
+            <summary>
+            Factory class to create ExecutorTask and TaskFutures.
+            </summary>
+            <typeparam name="TRequest">request to be executed</typeparam>
+            <typeparam name="TSuccess">success response received from peer</typeparam>
+            <typeparam name="TError">error response received from peer</typeparam>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFactory`3.GetTask(`0,Com.DaacoWorks.Protocol.Executor.IResponseCallback{`1,`2},Com.DaacoWorks.Protocol.Executor.IConnection)">
+            <summary>
+            Gets the Executor task
+            </summary>
+            <param name="requestObject">the request object</param>
+            <param name="callBack">the callback</param>
+            <param name="connection">the connection</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFactory`3.GetTaskFuture``1(`0,Com.DaacoWorks.Protocol.Executor.TaskFutureCallBack{`1,`2},Com.DaacoWorks.Protocol.Executor.IConnection)">
+            <summary>
+            Gets the task future
+            </summary>
+            <typeparam name="TResponse">response</typeparam>
+            <param name="requestObject">the request object</param>
+            <param name="callBack">the callback</param>
+            <param name="connection">the connection</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFactory`3.GetRunnableTask(`0,Com.DaacoWorks.Protocol.Executor.IResponseCallback{`1,`2},Com.DaacoWorks.Protocol.Executor.IConnection,System.Threading.CancellationToken)">
+            <summary>
+            Gets the runnable task
+            </summary>
+            <param name="requestObject">the request object</param>
+            <param name="callBack">the callback</param>
+            <param name="connection">the connection</param>
+            <param name="token">cancellation token</param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.TaskFuture`4">
+            <summary>
+            TaskFuture is a future for the task submitted.
+            </summary>
+            <typeparam name="TRequest"></typeparam>
+            <typeparam name="TResponse"></typeparam>
+            <typeparam name="TSuccess"></typeparam>
+            <typeparam name="TError"></typeparam>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFuture`4.#ctor(Com.DaacoWorks.Protocol.Executor.PDUFutureTask,`0,Com.DaacoWorks.Protocol.Executor.TaskFutureCallBack{`2,`3},System.Threading.CancellationTokenSource)">
+            <summary>
+            Instantiates a new task future.
+            </summary>
+            <param name="task"></param>
+            <param name="pdu"></param>
+            <param name="futureCallBack"></param>
+            <param name="cancellationTokenSource"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFuture`4.Cancel">
+            <summary>
+            Cancel a running Task
+            </summary>
+            <returns>true if cancellation is completed in 100ms</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFuture`4.IsCancelled">
+            <summary>
+            Check if the task is cancelled
+            </summary>
+            <returns>true iof cancelled</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFuture`4.IsDone">
+            <summary>
+            Check if the task is completed and response is received
+            </summary>
+            <returns>true if response is received</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFuture`4.Get">
+            <summary>
+            Gets the response received after completion of the task. 
+            Blocks the thread till task execution completed and response is received
+            </summary>
+            <returns>the response</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFuture`4.Get(System.TimeSpan)">
+            <summary>
+            Gets the response received after completion of the task. 
+            Blocks the thread till the specified timeout time or 
+            till task execution completed if before timeout and response is received
+            </summary>
+            <param name="timeout"></param>
+            <returns>response</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFuture`4.GetTask">
+            <summary>
+            Gets the task
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFuture`4.Dispose">
+            <summary>
+            Disposes the TaskFuture
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.TaskFutureCallBack`2">
+            <summary>
+            TaskFutureCallBack is a callback used to notify on success or error responses.
+            </summary>
+            <typeparam name="TSuccess">success response received from peer</typeparam>
+            <typeparam name="TError">error response received from peer</typeparam>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFutureCallBack`2.OnSuccess(`0)">
+            <summary>
+            Handler for success response
+            </summary>
+            <param name="response"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFutureCallBack`2.OnError(`1)">
+            <summary>
+            Handler for error response
+            </summary>
+            <param name="error"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFutureCallBack`2.GetResponse">
+            <summary>
+            Gets the response
+            </summary>
+            <returns>the response</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFutureCallBack`2.GetResponse(System.TimeSpan)">
+            <summary>
+            Gets the response if received within defined timeout time else returns null
+            </summary>
+            <param name="timeout">timeout time</param>
+            <returns>response if received within timeout time else null</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TaskFutureCallBack`2.Dispose">
+            <summary>
+            Dsiposes a Future task
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.TCPChannel">
+            <summary>
+            TCPChannel represents the TCP connection with a peer.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.TCPChannel.#ctor(Com.DaacoWorks.Protocol.Model.ConnectionParameters)">
+            <summary>
+            Instantiates a new TCP channel.
+            </summary>
+            <param name="connectionParams">connection parameters</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.ThreadPoolExecutor">
+            <summary>
+            Provides a task scheduler that allows to queue and schedule task
+            TODO: ensure dequeueing task only after previous task execution is completed
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Executor.ThreadPoolExecutor.isShutdown">
+            <summary>
+            represents whether the Executor is shutdown or not
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ThreadPoolExecutor.#ctor(System.Int32)">
+            <summary>
+            Instantiates ThreadPoolExecutor
+            </summary>
+            <param name="numberOfThreads"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ThreadPoolExecutor.Submit(Com.DaacoWorks.Protocol.Executor.IRunnable)">
+            <summary>
+            Creates and Submits a task to the queue
+            </summary>
+            <param name="runnable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ThreadPoolExecutor.Shutdown">
+            <summary>
+            Shutsdown ThreadPoolExecutor
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Protocol.Executor.ThreadPoolExecutor.MaximumConcurrencyLevel">
+            <summary>
+            Gets max concurrency level
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ThreadPoolExecutor.GetScheduledTasks">
+            <summary>
+            Gets all scheduled tasks
+            </summary>
+            <returns>scheduled tasks</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ThreadPoolExecutor.QueueTask(System.Threading.Tasks.Task)">
+            <summary>
+            Queues the task 
+            </summary>
+            <param name="task"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ThreadPoolExecutor.TryExecuteTaskInline(System.Threading.Tasks.Task,System.Boolean)">
+            <summary>
+            Tries executing task inline
+            </summary>
+            <param name="task"></param>
+            <param name="taskWasPreviouslyQueued"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Com.DaacoWorks.Protocol.Executor.ThreadPoolExecutor.IsShutdown">
+            <summary>
+            Gets whether the Executor is shutdown or not
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.ThreadPoolExecutor.Dispose">
+            <summary>
+            Disposes ThreadpoolExecutor
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Executor.UDPChannel">
+            <summary>
+            UDPChannel represents the UDP connection with a peer.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Executor.UDPChannel.#ctor(Com.DaacoWorks.Protocol.Model.ConnectionParameters)">
+            <summary>
+            Instantiates a new UDP channel.
+            </summary>
+            <param name="connectionParams">connection parameters</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Extensions.MemoryStreamExtension">
+            <summary>
+            An extension class for memory stream
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Extensions.MemoryStreamExtension.Flip(System.IO.MemoryStream)">
+            <summary>
+            resets the read position to 0
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Extensions.MemoryStreamExtension.Clear(System.IO.MemoryStream)">
+            <summary>
+            Sets the length to 0 and resets the read position to 0
+            </summary>
+            <param name="stream"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Extensions.MemoryStreamExtension.HasRemaining(System.IO.MemoryStream)">
+            <summary>
+            Checks if there are any more bytes to read from stream
+            </summary>
+            <param name="stream"></param>
+            <returns>true if there are any byte available to read</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Extensions.MemoryStreamExtension.Remaining(System.IO.MemoryStream)">
+            <summary>
+            Gets the number of bytes left to be read
+            </summary>
+            <param name="stream">memo</param>
+            <returns>number of bytes left</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Extensions.MemoryStreamExtension.ReadShort(System.IO.MemoryStream)">
+            <summary>
+            Reads a signed short value from stream
+            </summary>
+            <param name="buffer"></param>
+            <returns>unsigned short value</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Extensions.MemoryStreamExtension.ReadUnsignedShort(System.IO.MemoryStream)">
+            <summary>
+            reads unsigned short value from stream
+            </summary>
+            <param name="buffer"></param>
+            <returns>unsigned short</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Extensions.MemoryStreamExtension.Read(System.IO.MemoryStream,System.Byte[])">
+            <summary>
+            reads signed int value from stream
+            </summary>
+            <param name="buffer"></param>
+            <param name="data"></param>
+            <returns>signed int value</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Extensions.MemoryStreamExtension.Write(System.IO.MemoryStream,System.Byte[])">
+            <summary>
+            writes byte array to stream
+            </summary>
+            <param name="buffer"></param>
+            <param name="data"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Headers.Header">
+            <summary>
+             Header represents the header present in a protocol data unit.
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Headers.Header.pdu">
+            <summary>
+            Protocol Data Unit
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Headers.Header.#ctor(Com.DaacoWorks.Protocol.Model.ProtocolDataUnit)">
+            <summary>
+            Instantiates a new header.
+            </summary>
+            <param name="pdu"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Headers.Header.GetHeaderInBytes">
+            <summary>
+            Gets the header in bytes.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Logger.DefaultLogger">
+            <summary>
+            Default logger is used when log4net and Enterpriselibrary logger
+            are not used by the application.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.DefaultLogger.#ctor(System.String)">
+            <summary>
+            Instantiates a new default logger.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Logger.EntLibLogger">
+            <summary>
+            EntLibLogger is wrapper over Enterprise Library logger instance.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.EntLibLogger.#ctor(System.String)">
+            <summary>
+            Instantiates a new EntLibLogger.
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.EntLibLogger.Info(System.String,System.String,System.String)">
+            <summary>
+            Log information message
+            </summary>
+            <param name="msg"></param>
+            <param name="className"></param>
+            <param name="memberName"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.EntLibLogger.Debug(System.String,System.String,System.String)">
+            <summary>
+            Log debug message
+            </summary>
+            <param name="msg"></param>
+            <param name="className"></param>
+            <param name="memberName"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.EntLibLogger.Warn(System.String,System.String,System.String)">
+            <summary>
+            Log warining message
+            </summary>
+            <param name="msg"></param>
+            <param name="className"></param>
+            <param name="memberName"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.EntLibLogger.Error(System.String,System.Exception,System.String,System.String)">
+            <summary>
+            Log error message
+            </summary>
+            <param name="msg"></param>
+            <param name="exception"></param>
+            <param name="className"></param>
+            <param name="memberName"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Logger.ILogger">
+            <summary>
+            ILogger interface represents methods for different log levels.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.ILogger.Info(System.String,System.String,System.String)">
+            <summary>
+            Log information
+            </summary>
+            <param name="msg">the message</param>
+            <param name="className"></param>
+            <param name="memberName"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.ILogger.Debug(System.String,System.String,System.String)">
+            <summary>
+            Log debug information
+            </summary>
+            <param name="msg">the message</param>
+            <param name="className"></param>
+            <param name="memberName"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.ILogger.Warn(System.String,System.String,System.String)">
+            <summary>
+            Log warning message
+            </summary>
+            <param name="msg">the message</param>
+            <param name="className"></param>
+            <param name="memberName"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.ILogger.Error(System.String,System.Exception,System.String,System.String)">
+            <summary>
+            Log error message
+            </summary>
+            <param name="msg">the message</param>
+            <param name="exception"></param>
+            <param name="className"></param>
+            <param name="memberName"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Logger.Log4NetLogger">
+            <summary>
+            Log4NetLogger is wrapper over Log4Net logger instance.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.Log4NetLogger.#ctor(System.String)">
+            <summary>
+            Instantiates a new log 4 net logger.
+            </summary>
+            <param name="name">the name</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.Log4NetLogger.Info(System.String,System.String,System.String)">
+            <summary>
+            Log information message
+            </summary>
+            <param name="msg"></param>
+            <param name="className"></param>
+            <param name="memberName"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.Log4NetLogger.Debug(System.String,System.String,System.String)">
+            <summary>
+            Log debug message
+            </summary>
+            <param name="msg"></param>
+            <param name="className"></param>
+            <param name="memberName"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.Log4NetLogger.Warn(System.String,System.String,System.String)">
+            <summary>
+            Log warning message
+            </summary>
+            <param name="msg"></param>
+            <param name="className"></param>
+            <param name="memberName"></param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.Log4NetLogger.Error(System.String,System.Exception,System.String,System.String)">
+            <summary>
+            Log error message
+            </summary>
+            <param name="msg"></param>
+            <param name="exception"></param>
+            <param name="className"></param>
+            <param name="memberName"></param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Logger.LoggerFactory">
+            <summary>
+            Factory class to provide logger instance.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.LoggerFactory.GetLogger(System.String)">
+            <summary>
+            Gets the logger.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Logger.LoggerFactory.GetTraceHeader(System.String,System.String)">
+            <summary>
+            Gets the trace header.
+            </summary>
+            <param name="className"></param>
+            <param name="methodName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Model.ConnectionParameters">
+            <summary>
+             ConnectionParameters represents the parameters (like host, port) required for 
+             establishing a socket connection.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Model.ConnectionParameters.#ctor(System.String,System.Int32,Com.DaacoWorks.Protocol.Model.ConnectionType)">
+            <summary>
+            Instantiates a new connection parameters.
+            </summary>
+            <param name="host">the hostname</param>
+            <param name="port">port number</param>
+            <param name="type">connection type</param>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Model.ConnectionParameters.GetHost">
+            <summary>
+            Gets the host
+            </summary>
+            <returns>the host name</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Model.ConnectionParameters.GetPort">
+            <summary>
+            Gets the port
+            </summary>
+            <returns>port number</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Model.ConnectionParameters.GetConnectionType">
+            <summary>
+            Gets the connection type
+            </summary>
+            <returns>connection type</returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Model.ConnectionParameters.Equals(System.Object)">
+            <summary>
+            checks if objects are equal
+            </summary>
+            <param name="obj">any object</param>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Model.ConnectionParameters.GetHashCode">
+            <summary>
+            Gets has code
+            </summary>
+            <returns>has code</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Model.ConnectionType">
+            <summary>
+            Represents connection type
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Model.ConnectionType.TCP">
+            <summary>
+            TCP connection
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Model.ConnectionType.UDP">
+            <summary>
+            UDP connection
+            </summary>
+        </member>
+        <member name="F:Com.DaacoWorks.Protocol.Model.ConnectionType.SERIAL">
+            <summary>
+            Serial connection
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Model.ErrorResponse">
+            <summary>
+            abstract class to represent error response.
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Model.ProtocolDataUnit">
+            <summary>
+            Abstract base class for any protocol to represent the protocol data unit (pdu)
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Model.ProtocolDataUnit.GetLength">
+            <summary>
+            Gets the length.
+            </summary>
+            <returns>the length</returns>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Model.Request">
+            <summary>
+            Request represents a request submitted for execution
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Protocol.Model.Request.RequestIdentifier">
+            <summary>
+            Gets/sets the request identifier.
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Protocol.Model.Request.IsScheduledRequest">
+            <summary>
+            Gets/Sets whether the request made is scheduled request or not
+            True represents Scheduled request and false represents either Synchronous or Asynchronous request
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Model.RequestIdentifier">
+            <summary>
+            abstract base class to represent a identifier to identify a request.
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Model.Response">
+            <summary>
+            abstract base class to represent response received from peer.
+            </summary>
+        </member>
+        <member name="P:Com.DaacoWorks.Protocol.Model.Response.Request">
+            <summary>
+            Gets/Sets the request.
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Model.SocketParameters">
+            <summary>
+            Socketparameter represents the parameters required for establishing TCP/UDP connection.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Model.SocketParameters.#ctor(System.String,System.Int32,Com.DaacoWorks.Protocol.Model.ConnectionType)">
+            <summary>
+            Instantiates a new socket parameters.
+            </summary>
+            <param name="hostName">the host name</param>
+            <param name="port">port number</param>
+            <param name="type">connection type</param>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Model.SuccessResponse">
+            <summary>
+            abstract class to represent success response.
+            </summary>
+        </member>
+        <member name="T:Com.DaacoWorks.Protocol.Util.ProtocolUtils">
+            <summary>
+            ProtocolUtils class to provide utility methods.
+            </summary>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Util.ProtocolUtils.CurrentTimeMillis">
+            <summary>
+            Gets totl milliseconds since 1st Jan 1970
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Com.DaacoWorks.Protocol.Util.ProtocolUtils.GetHexByteString(System.IO.MemoryStream)">
+            <summary>
+            Gets the hex byte string.
+            </summary>
+            <param name="buffer">the buffer</param>
+            <returns>the hex byte string</returns>
+        </member>
+    </members>
+</doc>
