@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>206d421e-c8d0-4ecb-9e94-9fe5e2faf47c</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>DaacoWorks.ModbusShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Clients\IModbusClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clients\ModbusClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clients\ModbusClientFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\Exception\ModbusClientRuntimeException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Client\Exception\ModbusException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Codec\ModbusASCIIOverTCPUDPDecoder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Codec\ModbusASCIIOverTCPUDPEncoder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Codec\ModbusCodecFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Codec\ModbusResponseParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Codec\ModbusRTUOverTCPUDPDecoder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Codec\ModbusRTUOverTCPUDPEncoder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Codec\ModbusTCPUDPDecoder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Codec\ModbusTCPUDPEncoder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Header\ModbusTCPHeader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\DeviceInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\FileRecordData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ModbusRequestIdentifier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ModbusSocketParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Constants\Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Constants\FunctionCodes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Constants\ModbusErrorCodes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Constants\ModbusResponseErrorCode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Executor\EITCallBack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Executor\ModbusConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Executor\ModbusPDUWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Executor\ModbusRunnableTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Executor\ModbusTaskFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\ModbusErrorResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\ModbusRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\ModbusResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\ModbusSuccessResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\MaskWriteRegisterRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\ReadCoilsRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\ReadDeviceIdentificationRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\ReadDiscreteInputsRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\ReadFIFOQueueRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\ReadFileRecordRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\ReadHoldingRegistersRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\ReadInputRegistersRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\ReadWriteMultipleRegistersRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\WriteFileRecordRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\WriteMultipleCoilsRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\WriteMultipleRegistersRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\WriteSingleCoilRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Request\WriteSingleRegisterRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\MaskWriteRegisterResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\ReadCoilsResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\ReadDeviceIdentificationResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\ReadDiscreteInputsResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\ReadFIFOQueueResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\ReadFileRecordResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\ReadHoldingRegistersResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\ReadInputRegistersResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\ReadWriteMultipleRegistersResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\WriteFileRecordResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\WriteMultipleCoilsResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\WriteMultipleRegistersResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\WriteSingleCoilResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Response\WriteSingleRegisterResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Pdu\Util\ModbusUtil.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Response\Callback\IModbusResponseCallback.cs" />
+  </ItemGroup>
+</Project>
