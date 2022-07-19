@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A734963F-174F-495A-A899-265A2E91654B}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>DaacoWorks.SampleCodes</RootNamespace>
+    <AssemblyName>DaacoWorks.SampleCodes</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Trial|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug Trial\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release Trial|AnyCPU'">
+    <OutputPath>bin\Release Trial\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Modbus\callback\MaskWriteRegisterCallback.cs" />
+    <Compile Include="Modbus\callback\ReadCoilResponseCallback.cs" />
+    <Compile Include="Modbus\callback\ReadDeviceIndentificationCallback.cs" />
+    <Compile Include="Modbus\callback\ReadDiscreteInputsCallback.cs" />
+    <Compile Include="Modbus\callback\ReadFIFOQueueCallback.cs" />
+    <Compile Include="Modbus\callback\ReadFileRecordCallback.cs" />
+    <Compile Include="Modbus\callback\ReadHoldingRegisterCallback.cs" />
+    <Compile Include="Modbus\callback\ReadInputRegisterCallback.cs" />
+    <Compile Include="Modbus\callback\ReadWriteMultipleRegistersCallback.cs" />
+    <Compile Include="Modbus\callback\WriteFileRecordCallback.cs" />
+    <Compile Include="Modbus\callback\WriteMultipleCoilsCallback.cs" />
+    <Compile Include="Modbus\callback\WriteMultipleRegistersCallback.cs" />
+    <Compile Include="Modbus\callback\WriteSingleCoilCallback.cs" />
+    <Compile Include="Modbus\callback\WriteSingleRegisterCallback.cs" />
+    <Compile Include="Modbus\main\ModbusFunctionCodeTest.cs" />
+    <Compile Include="Modbus\MaskWriteRegisterSample.cs" />
+    <Compile Include="Modbus\ReadCoilsSample.cs" />
+    <Compile Include="Modbus\ReadDeviceIndentificationSample.cs" />
+    <Compile Include="Modbus\ReadDiscreteInputsSample.cs" />
+    <Compile Include="Modbus\ReadFIFOQueueSample.cs" />
+    <Compile Include="Modbus\ReadFileRecordSample.cs" />
+    <Compile Include="Modbus\ReadHoldingRegisterSample.cs" />
+    <Compile Include="Modbus\ReadInputRegistersSample.cs" />
+    <Compile Include="Modbus\ReadWriteMultipleRegistersSample.cs" />
+    <Compile Include="Modbus\WriteFileRecordSample.cs" />
+    <Compile Include="Modbus\WriteMultipleCoilsSample.cs" />
+    <Compile Include="Modbus\WriteMultipleRegistersSample.cs" />
+    <Compile Include="Modbus\WriteSingleCoilSample.cs" />
+    <Compile Include="Modbus\WriteSingleRegisterSample.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core45\DaacoWorks.Core45.csproj">
+      <Project>{f0406080-55cf-47dc-af1d-30f8fd9488f8}</Project>
+      <Name>DaacoWorks.Core45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modbus45\DaacoWorks.Modbus45.csproj">
+      <Project>{e79ba84a-da88-4127-9f44-a1b56519cb17}</Project>
+      <Name>DaacoWorks.Modbus45</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

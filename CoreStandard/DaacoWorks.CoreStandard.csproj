@@ -1,0 +1,75 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyName>DaacoWorks.Core</AssemblyName>
+    <RootNamespace>Com.DaacoWorks.Protocol</RootNamespace>
+    <Company>Daacoworks</Company>
+    <Product>Daacoworks Modern Api</Product>
+    <Authors>Daacoworks</Authors>
+    <Description>This stack provides core request and response execution</Description>
+    <Copyright>Copyright © Daacoworks 2018</Copyright>
+    <Configurations>Debug;Release;Debug Trial;Release Trial</Configurations>
+    <Version>1.0</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Trial|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TRIAL</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\netstandard2.0\DaacoWorks.Core.xml</DocumentationFile>
+  </PropertyGroup>  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release Trial|AnyCPU'">
+    <OutputPath>bin\Release Trial\</OutputPath>
+    <DefineConstants>TRACE;TRIAL</DefineConstants>
+    <DocumentationFile>bin\Release Trial\netstandard2.0\DaacoWorks.Core.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Core\Logger\DefaultLogger.cs" Link="Logger\DefaultLogger.cs" />
+    <Compile Include="..\Core\Logger\ILogger.cs" Link="Logger\ILogger.cs" />
+    <Compile Include="..\Core\Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="if &quot;$(ConfigurationName)&quot; == &quot;Release&quot; (&#xD;&#xA;rmdir  $(SolutionDir)ModernApiDlls\Final\NetStandard&#xD;&#xA;)&#xD;&#xA;&#xD;&#xA;if &quot;$(ConfigurationName)&quot; == &quot;Release Trial&quot;  (&#xD;&#xA;rmdir  $(SolutionDir)ModernApiDlls\Trial\NetStandard&#xD;&#xA;)&#xD;&#xA;" />
+  </Target>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if &quot;$(ConfigurationName)&quot; == &quot;Release&quot; (&#xD;&#xA;mkdir $(SolutionDir)ModernApiDlls\Final\NetStandard&#xD;&#xA;copy &quot;$(TargetDir)*.dll&quot; $(SolutionDir)ModernApiDlls\Final\NetStandard&#xD;&#xA;copy &quot;$(TargetDir)*.xml&quot; $(SolutionDir)ModernApiDlls\Final\NetStandard&#xD;&#xA;)&#xD;&#xA;&#xD;&#xA;if &quot;$(ConfigurationName)&quot; == &quot;Release Trial&quot;  (&#xD;&#xA;mkdir $(SolutionDir)ModernApiDlls\Trial\NetStandard&#xD;&#xA;copy &quot;$(TargetDir)*.dll&quot; $(SolutionDir)ModernApiDlls\Trial\NetStandard&#xD;&#xA;copy &quot;$(TargetDir)*.xml&quot; $(SolutionDir)ModernApiDlls\Trial\NetStandard&#xD;&#xA;)" />
+  </Target>
+
+  <Import Project="..\CoreShared\CoreShared.projitems" Label="Shared" />
+
+</Project>
