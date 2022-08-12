@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>583f19b7-702c-4ec6-8c04-54c3e39be2b5</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>CoreShared</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Clients\Client.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clients\ClientFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Clients\IClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Codec\IDecoder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Codec\IEncoder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Codec\IResponseHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exception\ConnectionException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exception\ErrorCodes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exception\ProtocolException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\ChannelFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\ChannelInboundHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\Connection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\ExecutorFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\ExecutorTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\GlobalExecutor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\IChannel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\IRequestExecutor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\IResponseCallback.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\IResponseExecutor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\IRunnable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\PDUFutureTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\RequestExecutor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\RequestMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\RequestPDUWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\ResponseExecutor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\ScheduledTask.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\ScheduledThreadPoolExecutor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\TaskFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\TaskFuture.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\TaskFutureCallBack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\TCPChannel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\ThreadPoolExecutor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Executor\UDPChannel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Extensions\MemoryStreamExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Headers\Header.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ConnectionParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ConnectionType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ErrorResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ProtocolDataUnit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Request.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\RequestIdentifier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Response.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\SocketParameters.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\SuccessResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Util\ProtocolUtils.cs" />
+  </ItemGroup>
+</Project>

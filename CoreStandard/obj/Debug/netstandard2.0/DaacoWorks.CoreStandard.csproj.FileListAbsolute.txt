@@ -1,0 +1,16 @@
+W:\protocols_master\modbus\Protocols\DOTNET\CoreStandard\bin\Debug\netstandard2.0\DaacoWorks.Core.deps.json
+W:\protocols_master\modbus\Protocols\DOTNET\CoreStandard\bin\Debug\netstandard2.0\DaacoWorks.Core.dll
+W:\protocols_master\modbus\Protocols\DOTNET\CoreStandard\bin\Debug\netstandard2.0\DaacoWorks.Core.pdb
+W:\protocols_master\modbus\Protocols\DOTNET\CoreStandard\obj\Debug\netstandard2.0\DaacoWorks.CoreStandard.csproj.AssemblyReference.cache
+W:\protocols_master\modbus\Protocols\DOTNET\CoreStandard\obj\Debug\netstandard2.0\DaacoWorks.CoreStandard.GeneratedMSBuildEditorConfig.editorconfig
+W:\protocols_master\modbus\Protocols\DOTNET\CoreStandard\obj\Debug\netstandard2.0\DaacoWorks.CoreStandard.csproj.CoreCompileInputs.cache
+W:\protocols_master\modbus\Protocols\DOTNET\CoreStandard\obj\Debug\netstandard2.0\DaacoWorks.Core.dll
+W:\protocols_master\modbus\Protocols\DOTNET\CoreStandard\obj\Debug\netstandard2.0\DaacoWorks.Core.pdb
+W:\protocols_master\modbus\Protocols\DOTNET-GitHub\CoreStandard\bin\Debug\netstandard2.0\DaacoWorks.Core.deps.json
+W:\protocols_master\modbus\Protocols\DOTNET-GitHub\CoreStandard\bin\Debug\netstandard2.0\DaacoWorks.Core.dll
+W:\protocols_master\modbus\Protocols\DOTNET-GitHub\CoreStandard\bin\Debug\netstandard2.0\DaacoWorks.Core.pdb
+W:\protocols_master\modbus\Protocols\DOTNET-GitHub\CoreStandard\obj\Debug\netstandard2.0\DaacoWorks.CoreStandard.csproj.AssemblyReference.cache
+W:\protocols_master\modbus\Protocols\DOTNET-GitHub\CoreStandard\obj\Debug\netstandard2.0\DaacoWorks.CoreStandard.GeneratedMSBuildEditorConfig.editorconfig
+W:\protocols_master\modbus\Protocols\DOTNET-GitHub\CoreStandard\obj\Debug\netstandard2.0\DaacoWorks.CoreStandard.csproj.CoreCompileInputs.cache
+W:\protocols_master\modbus\Protocols\DOTNET-GitHub\CoreStandard\obj\Debug\netstandard2.0\DaacoWorks.Core.dll
+W:\protocols_master\modbus\Protocols\DOTNET-GitHub\CoreStandard\obj\Debug\netstandard2.0\DaacoWorks.Core.pdb

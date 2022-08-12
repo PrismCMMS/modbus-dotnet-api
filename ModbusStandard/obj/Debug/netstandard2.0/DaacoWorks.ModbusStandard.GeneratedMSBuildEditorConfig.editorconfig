@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = Com.DaacoWorks.Modbus
+build_property.ProjectDir = W:\protocols_master\modbus\Protocols\DOTNET-GitHub\ModbusStandard\

@@ -1,0 +1,74 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<Configurations>Debug;Release;Debug Trial;Release Trial</Configurations>
+	<PackageId>DaacoWorks.Modbus</PackageId>
+	<Version>1.0</Version>
+	<Authors>Daacoworks</Authors>
+	<Company>Daacoworks</Company>
+	<Product>Daacoworks Modbus Modern Api</Product>
+	<Description>A Modern api for Modbus protocol</Description>
+	<Copyright>Copyright © Daacoworks 2018</Copyright>
+	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+	<AssemblyName>DaacoWorks.Modbus</AssemblyName>
+	<RootNamespace>Com.DaacoWorks.Modbus</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Trial|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;TRIAL;DEBUG TRIAL;NETSTANDARD2_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\netstandard2.0\DaacoWorks.Modbus.xml</DocumentationFile>
+  </PropertyGroup>  
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release Trial|AnyCPU'">
+    <OutputPath>bin\Release Trial\</OutputPath>
+    <DefineConstants>TRACE;TRIAL</DefineConstants>
+    <DocumentationFile>bin\Release Trial\netstandard2.0\DaacoWorks.Modbus.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>  
+  <ItemGroup>
+    <Compile Include="..\Modbus\Properties\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\CoreStandard\DaacoWorks.CoreStandard.csproj" />
+  </ItemGroup>
+  
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="if &quot;$(ConfigurationName)&quot; == &quot;Release&quot; (&#xD;&#xA;mkdir $(SolutionDir)ModernApiDlls\Final\NetStandard&#xD;&#xA;copy &quot;$(TargetDir)*.dll&quot; $(SolutionDir)ModernApiDlls\Final\NetStandard&#xD;&#xA;copy &quot;$(TargetDir)*.xml&quot; $(SolutionDir)ModernApiDlls\Final\NetStandard&#xD;&#xA;)&#xD;&#xA;&#xD;&#xA;if &quot;$(ConfigurationName)&quot; == &quot;Release Trial&quot;  (&#xD;&#xA;mkdir $(SolutionDir)ModernApiDlls\Trial\NetStandard&#xD;&#xA;copy &quot;$(TargetDir)*.dll&quot; $(SolutionDir)ModernApiDlls\Trial\NetStandard&#xD;&#xA;copy &quot;$(TargetDir)*.xml&quot; $(SolutionDir)ModernApiDlls\Trial\NetStandard&#xD;&#xA;)" />
+  </Target>
+  
+  <Import Project="..\DaacoWorks.ModbusShared\DaacoWorks.ModbusShared.projitems" Label="Shared" />
+
+</Project>

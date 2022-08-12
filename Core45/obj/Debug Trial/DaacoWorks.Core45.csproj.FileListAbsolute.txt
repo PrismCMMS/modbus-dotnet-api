@@ -1,0 +1,7 @@
+W:\protocols_master\modbus\Protocols\DOTNET\Core45\bin\Debug Trial\DaacoWorks.Core.xml
+W:\protocols_master\modbus\Protocols\DOTNET\Core45\bin\Debug Trial\DaacoWorks.Core.dll
+W:\protocols_master\modbus\Protocols\DOTNET\Core45\bin\Debug Trial\DaacoWorks.Core.pdb
+W:\protocols_master\modbus\Protocols\DOTNET\Core45\obj\Debug Trial\DaacoWorks.Core45.csproj.AssemblyReference.cache
+W:\protocols_master\modbus\Protocols\DOTNET\Core45\obj\Debug Trial\DaacoWorks.Core45.csproj.CoreCompileInputs.cache
+W:\protocols_master\modbus\Protocols\DOTNET\Core45\obj\Debug Trial\DaacoWorks.Core.dll
+W:\protocols_master\modbus\Protocols\DOTNET\Core45\obj\Debug Trial\DaacoWorks.Core.pdb

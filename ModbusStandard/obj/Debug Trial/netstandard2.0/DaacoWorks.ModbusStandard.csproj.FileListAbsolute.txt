@@ -1,0 +1,11 @@
+W:\protocols_master\modbus\Protocols\DOTNET\ModbusStandard\bin\Debug\netstandard2.0\DaacoWorks.Modbus.deps.json
+W:\protocols_master\modbus\Protocols\DOTNET\ModbusStandard\bin\Debug\netstandard2.0\DaacoWorks.Modbus.dll
+W:\protocols_master\modbus\Protocols\DOTNET\ModbusStandard\bin\Debug\netstandard2.0\DaacoWorks.Modbus.pdb
+W:\protocols_master\modbus\Protocols\DOTNET\ModbusStandard\bin\Debug\netstandard2.0\DaacoWorks.Core.dll
+W:\protocols_master\modbus\Protocols\DOTNET\ModbusStandard\bin\Debug\netstandard2.0\DaacoWorks.Core.pdb
+W:\protocols_master\modbus\Protocols\DOTNET\ModbusStandard\obj\Debug Trial\netstandard2.0\DaacoWorks.ModbusStandard.csproj.AssemblyReference.cache
+W:\protocols_master\modbus\Protocols\DOTNET\ModbusStandard\obj\Debug Trial\netstandard2.0\DaacoWorks.ModbusStandard.GeneratedMSBuildEditorConfig.editorconfig
+W:\protocols_master\modbus\Protocols\DOTNET\ModbusStandard\obj\Debug Trial\netstandard2.0\DaacoWorks.ModbusStandard.csproj.CoreCompileInputs.cache
+W:\protocols_master\modbus\Protocols\DOTNET\ModbusStandard\obj\Debug Trial\netstandard2.0\DaacoWorks.ModbusStandard.csproj.CopyComplete
+W:\protocols_master\modbus\Protocols\DOTNET\ModbusStandard\obj\Debug Trial\netstandard2.0\DaacoWorks.Modbus.dll
+W:\protocols_master\modbus\Protocols\DOTNET\ModbusStandard\obj\Debug Trial\netstandard2.0\DaacoWorks.Modbus.pdb

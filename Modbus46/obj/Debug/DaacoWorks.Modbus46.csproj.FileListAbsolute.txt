@@ -1,0 +1,10 @@
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus46\bin\Debug\DaacoWorks.Modbus.dll
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus46\bin\Debug\DaacoWorks.Modbus.pdb
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus46\bin\Debug\DaacoWorks.Core.dll
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus46\bin\Debug\DaacoWorks.Core.pdb
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus46\bin\Debug\DaacoWorks.Core.xml
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus46\obj\Debug\DaacoWorks.Modbus46.csproj.AssemblyReference.cache
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus46\obj\Debug\DaacoWorks.Modbus46.csproj.CoreCompileInputs.cache
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus46\obj\Debug\DaacoWorks.Modbus46.csproj.CopyComplete
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus46\obj\Debug\DaacoWorks.Modbus.dll
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus46\obj\Debug\DaacoWorks.Modbus.pdb

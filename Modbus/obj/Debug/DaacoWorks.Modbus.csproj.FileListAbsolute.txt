@@ -1,0 +1,13 @@
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus\bin\Debug\DaacoWorks.Modbus.dll.config
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus\bin\Debug\DaacoWorks.Modbus.xml
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus\bin\Debug\DaacoWorks.Modbus.dll
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus\bin\Debug\DaacoWorks.Modbus.pdb
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus\bin\Debug\DaacoWorks.Core.dll
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus\bin\Debug\DaacoWorks.Core.pdb
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus\bin\Debug\DaacoWorks.Core.xml
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus\bin\Debug\DaacoWorks.Core.dll.config
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus\obj\Debug\DaacoWorks.Modbus.csproj.AssemblyReference.cache
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus\obj\Debug\DaacoWorks.Modbus.csproj.CoreCompileInputs.cache
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus\obj\Debug\DaacoWorks.Modbus.csproj.CopyComplete
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus\obj\Debug\DaacoWorks.Modbus.dll
+W:\protocols_master\modbus\Protocols\DOTNET\Modbus\obj\Debug\DaacoWorks.Modbus.pdb

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "gmlVWu4zNyhP+vPmUn8agGmfVmVfWIXK7eELBITiIuFxeLo/b3HPRikrG5Z3QFsZLrm2js/T4ZONw7CfX0lvPw==",
+  "success": true,
+  "projectFilePath": "W:\\protocols_master\\modbus\\Protocols\\DOTNET-GitHub\\ModbusStandard\\DaacoWorks.ModbusStandard.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\veera\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\veera\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

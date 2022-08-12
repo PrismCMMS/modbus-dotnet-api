@@ -1,0 +1,16 @@
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\bin\Debug\ModBusTest.dll.config
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\bin\Debug\ModBusTest.dll
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\bin\Debug\ModBusTest.pdb
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\bin\Debug\DaacoWorks.Core.dll
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\bin\Debug\DaacoWorks.Modbus.dll
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\bin\Debug\TestSystem.dll
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\bin\Debug\DaacoWorks.Core.pdb
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\bin\Debug\DaacoWorks.Core.xml
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\bin\Debug\DaacoWorks.Modbus.pdb
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\bin\Debug\TestSystem.pdb
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\obj\Debug\ModBusTest.csproj.AssemblyReference.cache
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\obj\Debug\ModBusTest.csproj.CoreCompileInputs.cache
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\obj\Debug\ModBusTest.csproj.CopyComplete
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\obj\Debug\ModBusTest.dll
+W:\protocols_master\modbus\Protocols\DOTNET\ModBusTest\obj\Debug\ModBusTest.pdb
